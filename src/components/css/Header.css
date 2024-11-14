@@ -1,0 +1,68 @@
+.Header {
+  background-color: #393939;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 자식 요소들을 양 끝으로 배치 */
+  color: #fff;
+  font-family: "source-han-serif-korean", serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40%; /* 헤더 높이 설정 */
+  padding: 0 2%; /* 양옆에 여백 추가 */
+}
+
+.Header .sidebar {
+  background-color: #5A5C5C;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 10%;  
+}
+
+.Header .sidebar:hover {
+  background-color: #7B7D7D;
+}
+
+.Header img {
+  width: 70%;  
+  height: 100%;
+  margin: 0 auto;  
+}
+
+.Header .search-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  gap: 10px; 
+  width: 20%;  /* 오른쪽 20% 차지 */
+}
+
+.Header input[type="text"] {
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+  padding: 1% 2%;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 70%;  /* 검색창 너비 */
+  transition: border-color 0.3s ease;
+}
+
+.Header button.search {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 1% 2%;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Header button.search:hover {
+  background-color: white;
+  color: black;
+}
