@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "../css/Header.css";
+import "./Header.css";
 
 function Header(){
   const [search, setSearch] = useState(""); // 검색어저장state
