@@ -21,8 +21,8 @@ function App() {
       <Header isAuth={isAuth} setIsAuth={setIsAuth} 
       userInfo={userInfo} setUserInfo={setUserInfo}/>
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/login' element={<Login setIsAuth={setIsAuth}/>} />
+        <Route path='/doori' element={<Home />}/>
+        <Route path='/doori/login' element={<Login setIsAuth={setIsAuth}/>} />
       </Routes>
       <Footer/>
     </div>
