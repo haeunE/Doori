@@ -36,7 +36,7 @@
   background-color: #f9f9f9;
 }
 
-button {
+.Login button {
   background-color: #5A5C5C;
   color: white;
   border: none;
@@ -48,7 +48,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.Login button:hover {
   background-color: #7B7D7D;
 }
 
