@@ -2,11 +2,11 @@
   background-color: #393939;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 자식 요소들을 양 끝으로 배치 */
+  justify-content: space-between; 
   color: #fff;
   font-family: "source-han-serif-korean", serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 40%; /* 헤더 높이 설정 */
+  height: 100px; 
   padding: 0 2%; /* 양옆에 여백 추가 */
 }
 
@@ -20,6 +20,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 10%;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  margin: 0;
 }
 
 .Header .sidebar:hover {
@@ -28,8 +33,9 @@
 
 .Header img {
   width: 70%;  
-  height: 100%;
-  margin: 0 auto;  
+  height: auto;
+  margin: 0 auto;
+  display: block;  
 }
 
 .Header .search-wrapper {
@@ -37,7 +43,7 @@
   align-items: center;
   justify-content: flex-end; 
   gap: 10px; 
-  width: 20%;  /* 오른쪽 20% 차지 */
+  width: 60%; 
 }
 
 .Header input[type="text"] {
@@ -47,7 +53,7 @@
   padding: 1% 2%;
   border-radius: 5px;
   font-size: 1rem;
-  width: 70%;  /* 검색창 너비 */
+  width: 80%;  
   transition: border-color 0.3s ease;
 }
 
@@ -60,9 +66,29 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 25%;
 }
 
 .Header button.search:hover {
   background-color: white;
   color: black;
+}
+
+.auth-link {
+  font-size: small;
+  color: white; 
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.Header .left-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2%;
+  width: 20%; 
 }
