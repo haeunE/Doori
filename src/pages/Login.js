@@ -1,7 +1,11 @@
-import axios from "axios"
+
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "./css/Login.css"
+import Kakao from "../components/js/Kakao"
+import axiosInstance from "../axiosInstance"
+
+
 
 function Login({setIsAuth}){
   const [user, setUser] = useState({
@@ -20,13 +24,10 @@ function Login({setIsAuth}){
   return(
     <div className="Login">
       <div className="loginInfo">
-        ID : <input type="text" name="username" onChange={onChangeHandler}/><br/>
-        Password : <input type="text" name="password" onChange={onChangeHandler}/>
-        <div className="singupLink">
-        <Link to="/singup">회원가입</Link>
-        </div>
+      <strong>ID:</strong> <input type="text" name="username" onChange={onChangeHandler}/><br/>
+      <strong>password:</strong> <input type="text" name="password" onChange={onChangeHandler}/>
         <button onClick={()=>{
-          axios.post(`${process.env.REACT_APP_SERVER_URL}/login`, user)
+          axiosInstance.post("/login", user)
           .then(reponse=>{
             // const jwt = reponse.headers.getAuthorization
             // if(jwt != null){
@@ -38,9 +39,12 @@ function Login({setIsAuth}){
               console.log(error)
             })
           }}>로그인</button>
+        <div className="singupLink">
+        <Link to="/singup" className="link">회원가입</Link>
+        </div>
       </div>
       <div className="socialLogin">
-        <div>카카오</div>
+        <Kakao setIsAuth={setIsAuth}/>
         <div>구글</div>
       </div>
         

@@ -6,7 +6,7 @@
   color: #fff;
   font-family: "source-han-serif-korean", serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 100%; 
+  height: 100px; 
   padding: 0 2%; /* 양옆에 여백 추가 */
 }
 
@@ -20,6 +20,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 10%;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  margin: 0;
 }
 
 .Header .sidebar:hover {

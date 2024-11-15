@@ -4,10 +4,11 @@
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
-  width: 100%;
-  max-width: 1000px;
+  width: 70%;
+  max-width: 100vh;
   padding: 5% 2%;
-  margin: 0 auto;
+  margin: 0% auto;
+  font-family: "source-han-serif-korean", serif;
 }
 
 .loginInfo {
@@ -26,7 +27,7 @@
 }
 
 .loginInfo input {
-  width: 100%;
+  width: 80%;
   padding: 3% 5%;
   margin-bottom: 5%;
   border: 1px solid #ccc;
@@ -40,11 +41,10 @@ button {
   color: white;
   border: none;
   padding: 3% 5%;
-  font-size: 4%;
+  font-size: 100%;
   border-radius: 5px;
   cursor: pointer;
-  width: 50%;
-  margin-bottom: 5%;
+  width: 40%;
   transition: background-color 0.3s ease;
 }
 
@@ -75,3 +75,19 @@ button:hover {
 .socialLogin div:hover {
   background-color: #ddd;
 }
+
+.Login strong{
+  display: flex;
+  margin-left: 8%;
+}
+
+.link {
+  font-size: small;
+  color: black; 
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
