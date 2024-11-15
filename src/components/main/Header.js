@@ -24,7 +24,7 @@ function Header({isAuth, setIsAuth, setUserInfo}) {
   return (
     <div className="Header">
       <button className="sidebar">sidebar</button>
-      <Link to="/">
+      <Link to="/doori">
         <img src="/img/logo_header.png" alt="doorimain" />
       </Link>
 
@@ -32,12 +32,12 @@ function Header({isAuth, setIsAuth, setUserInfo}) {
         <div className="links-container">
           {isAuth ? (
             <>
-              <Link to="/userInfo" className="auth-link">내정보</Link>
-              <Link to="/logout" className="auth-link"/*onClick={logout}*/>로그아웃</Link>
+              <Link to="/doori/userInfo" className="auth-link">내정보</Link>
+              <Link to="/doori/logout" className="auth-link"/*onClick={logout}*/>로그아웃</Link>
             </>
           ) : (
             <>
-              <Link to="/login" className="auth-link">로그인</Link>
+              <Link to="/doori/login" className="auth-link">로그인</Link>
             </>
           )}
         </div>
