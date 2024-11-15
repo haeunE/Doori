@@ -7,7 +7,7 @@ function Kakao({setIsAuth}){
 
   const responseKakao = (response) => {
     console.log(response)
-    axiosInstance.post('/login/kakao',{
+    axiosInstance.post('/doori/login/kakao',{
       username:response.profile.properties.nickname
     }).then(response =>{
       const jwt = response.headers.authorization;
@@ -16,7 +16,7 @@ function Kakao({setIsAuth}){
         sessionStorage.setItem('jwt',jwt)
         setIsAuth(true)
 
-        navigate("/")
+        navigate("/doori")
       }
     }).catch(error =>{
       console.log(error)

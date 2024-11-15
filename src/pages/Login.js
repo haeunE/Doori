@@ -27,20 +27,20 @@ function Login({setIsAuth}){
       <strong>ID:</strong> <input type="text" name="username" onChange={onChangeHandler}/><br/>
       <strong>password:</strong> <input type="text" name="password" onChange={onChangeHandler}/>
         <button onClick={()=>{
-          axiosInstance.post("/login", user)
+          axiosInstance.post("/doori/login", user)
           .then(reponse=>{
             // const jwt = reponse.headers.getAuthorization
             // if(jwt != null){
               //   sessionStorage.setItem('jwt',jwt),
               //   setIsAuth(true),
-              //   navigate("/")
+              //   navigate("/doori")
               // }
             }).catch(error=>{
               console.log(error)
             })
           }}>로그인</button>
         <div className="singupLink">
-        <Link to="/singup" className="link">회원가입</Link>
+        <Link to="/doori/signup" className="link">회원가입</Link>
         </div>
       </div>
       <div className="socialLogin">
