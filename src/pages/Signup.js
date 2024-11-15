@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './css/Signup.css';
 import axiosInstance from "../axiosInstance";
@@ -28,27 +27,46 @@ function Signup() {
         }
     };
 
-    // 유효성 검사 함수
-    const validateField = (name, value) => {
-        let error = '';
-        const regexes = {
-            username: /.+/,
-            password: /^[a-z\d!@*&-_]{8,}$/, 
-            name: /^[가-힣]+$/,
-            tel: /^\d{11}$/, 
-            email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        };
-
-        if (name === 'username' && !value) error = '아이디를 입력해주세요.';
-        // else if (name === 'username' && !regexes.username.test(value)) error = '아이디는 영문과 숫자로만 입력 가능합니다.';
-        else if (name === 'password' && !regexes.password.test(value)) error = '비밀번호는 8자 이상이어야 하며, 영문, 숫자, 특수문자만 가능합니다.';
-        else if (name === 'name' && !regexes.name.test(value)) error = '이름은 한글만 입력 가능합니다.';
-        else if (name === 'tel' && !regexes.tel.test(value)) error = '전화번호는 11자리 숫자만 가능합니다.';
-        else if (name === 'email' && !regexes.email.test(value)) error = '유효한 이메일 형식을 입력해주세요.';
-
-        setErrors((prev) => ({ ...prev, [`${name}Error`]: error }));
-        return !error;
+// 유효성 검사 함수
+const validateField = (name, value) => {
+    const errorMessages = {
+        username: '아이디를 입력하세요.',
+        password: '비밀번호를 입력하세요.',
+        name: '이름을 입력하세요.',
+        tel: '전화번호를 입력하세요.',
+        email: '이메일을 입력하세요.'
     };
+
+    const regexes = {
+        username: /^[A-Za-z0-9]{5,50}$/,
+        password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/,
+        name: /^[A-Za-z가-힣]{1,10}$/,
+        tel: /^\d{11}$/,
+        email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    };
+
+    let error = '';
+
+    // 필드가 비어있는 경우 기본 메시지
+    if (value === '') {
+        error = errorMessages[name] || '';
+    }
+    // 필드가 비어있지 않으면 정규식을 통해 검사
+    else if (regexes[name] && !regexes[name].test(value)) {
+        if (name === 'username') error = '아이디는 영문 또는 숫자, 5자 이상 50자 이하로 입력하세요.';
+        else if (name === 'password') error = '비밀번호는 8~30자, 하나 이상의 영문과 숫자를 포함해야 합니다.';
+        else if (name === 'name') error = '이름은 한글 또는 영문, 10자 이하로 입력하세요.';
+        else if (name === 'tel') error = '전화번호는 11자리 숫자만 가능합니다.';
+        else if (name === 'email') error = '유효한 이메일 형식을 입력하세요.';
+    } else {
+        // 유효성 검사를 통과한 경우 오류 메시지를 빈 문자열로 설정
+        error = '';
+    }
+
+    setErrors((prev) => ({ ...prev, [`${name}Error`]: error }));
+    return !error;
+};
+
 
     useEffect(() => {
         const { username, password, name, tel, email } = member;
@@ -69,7 +87,8 @@ function Signup() {
 
         try {
             const responseData = await axiosInstance.post('/doori/signup', member);
-            if (responseData.data.success) {
+            console.log(responseData)
+            if (responseData.status==200) {
                 alert('회원가입이 성공했습니다!');
                 navigate('/doori');
             } else {
