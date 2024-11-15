@@ -1,0 +1,93 @@
+.Login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  width: 70%;
+  max-width: 100vh;
+  padding: 5% 2%;
+  margin: 0% auto;
+  font-family: "source-han-serif-korean", serif;
+}
+
+.loginInfo {
+  background-color: #fff;
+  padding: 10%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  margin-bottom: 5%;
+}
+
+.loginInfo label {
+  display: block; /* 레이블을 블록으로 표시 */
+  margin-bottom: 5px; /* 레이블과 input 사이 간격 */
+  font-weight: bold;
+}
+
+.loginInfo input {
+  width: 80%;
+  padding: 3% 5%;
+  margin-bottom: 5%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 4%;
+  background-color: #f9f9f9;
+}
+
+button {
+  background-color: #5A5C5C;
+  color: white;
+  border: none;
+  padding: 3% 5%;
+  font-size: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 40%;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #7B7D7D;
+}
+
+.socialLogin {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 5%;
+}
+
+.socialLogin div {
+  padding: 3% 5%;
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 4%;
+  border-radius: 5px;
+  width: 48%;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.socialLogin div:hover {
+  background-color: #ddd;
+}
+
+.Login strong{
+  display: flex;
+  margin-left: 8%;
+}
+
+.link {
+  font-size: small;
+  color: black; 
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
