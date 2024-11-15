@@ -6,6 +6,7 @@ import Footer from './components/main/Footer';
 import Login from './pages/Login';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home';
+import Movies from './pages/Movies';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/login' element={<Login setIsAuth={setIsAuth}/>} />
+        <Route path='/movies' element={<Movies setIsAuth={setIsAuth}/>}/>
       </Routes>
       <Footer/>
     </div>
