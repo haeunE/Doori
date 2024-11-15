@@ -23,7 +23,7 @@ function App() {
       userInfo={userInfo} setUserInfo={setUserInfo}/>
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/signup' element={<Signup />}/>
+        <Route path='/doori/signup' element={<Signup />}/>
         <Route path='/login' element={<Login setIsAuth={setIsAuth}/>} />
       </Routes>
       <Footer/>

@@ -1,11 +1,31 @@
 import { useEffect, useState } from "react";
+import './css/Signup.css'
+
+// 수정사항 : useState, useEffect 코드 간결하게 수정
 
 function Signup() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [tel, setTel] = useState('');
-    const [email, setEmail] = useState('');
+const[member, setMember] = useState({
+    username : '',
+    password : '',
+    name : '',
+    tel : '',
+    email: ''
+  })
+
+  const onChangeHandler = (e) => {
+    setMember({
+      ...member,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [name, setName] = useState('');
+    // const [tel, setTel] = useState('');
+    // const [email, setEmail] = useState('');
 
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
