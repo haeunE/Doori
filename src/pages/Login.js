@@ -40,7 +40,7 @@ function Login({setIsAuth}){
             })
           }}>로그인</button>
         <div className="singupLink">
-        <Link to="/doori/singup" className="link">회원가입</Link>
+        <Link to="/doori/signup" className="link">회원가입</Link>
         </div>
       </div>
       <div className="socialLogin">

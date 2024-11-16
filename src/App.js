@@ -1,8 +1,9 @@
-import logo from './logo.svg';
+import React  from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/main/Header';
 import Footer from './components/main/Footer';
+import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home';
@@ -22,6 +23,7 @@ function App() {
       userInfo={userInfo} setUserInfo={setUserInfo}/>
       <Routes>
         <Route path='/doori' element={<Home />}/>
+        <Route path='/doori/signup' element={<Signup />}/>
         <Route path='/doori/login' element={<Login setIsAuth={setIsAuth}/>} />
       </Routes>
       <Footer/>
