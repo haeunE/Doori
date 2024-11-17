@@ -16,6 +16,9 @@ function Cards({list}){
               img={item.img}
               title={item.title}
               link={item.link}
+              icon= {item.icon}
+              num = {item.num}
+              some = {item.some}
             />
           ))}
         </ul>

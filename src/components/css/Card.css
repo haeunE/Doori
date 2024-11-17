@@ -12,7 +12,7 @@
   flex-direction: column; /* 세로로 배치 */
   flex-flow: column;
   border-style:solid;
-  border-width:2px;
+  border-width:1px;
   width: 100%;
   border-color: #fff;
   box-shadow: 0 0px 5px #A53737;
@@ -21,12 +21,13 @@
   border-radius:10px;
   overflow: hidden;
   text-decoration: column;
+  text-decoration: none;
 }
 
 .cards__item__pic-wrap {
   position: relative;
   /* width: 100%; */
-  height:90%;
+  height: 75%;
   overflow: hidden;
   display: flex; /* flexbox 사용 */
   justify-content: center; /* 수평 중앙 정렬 */
@@ -70,16 +71,35 @@
   transform: scale(1.1);
 }
 
-/* .cards__item__info {
-  padding: 10px 10px 10px;
-} */
+.cards__item__info {
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+  justify-content: center; /* 수평 정렬 */
+  padding: 5px;
+  gap: 0.3rem;
+}
+
+.cards__item__icon {
+  width: 1em; /* 텍스트 크기에 비례한 너비 */
+  height: 1em; /* 텍스트 크기에 비례한 높이 */
+  fill: currentColor; /* 텍스트 색상과 동일하게 설정 */
+  margin-right: 8px; /* 아이콘과 텍스트 간격 */
+  display: inline-block; /* inline-block으로 처리 */
+}
 
 .cards__item__text {
-  color: #201C1C ;
+  color: #fff;
   font-size: 18px;
-  line-height: 25px;
-  height: 10%;
+  line-height: 1.4; /* 텍스트 줄 간격 */
+  
 }
+
+.cards__item__num{
+  color: #fff;
+  font-size: 13px;
+  font-style: light;
+}
+
 
 @media only screen and (min-width: 1200px) {
   .content__blog__container {

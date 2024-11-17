@@ -17,7 +17,9 @@ function Card(props) {
           </figure>
           
           <div className='cards__item__info'>
+            <img  className='cards__item__icon' src={props.icon}/>
             <h5 className='cards__item__text'>{props.title}</h5>
+            <p className="cards__item__num">{props.some}<br/>{props.num}</p>
           </div>
         </Link>
       </li>
