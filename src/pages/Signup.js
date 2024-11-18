@@ -13,6 +13,7 @@ function Signup() {
     });
     const [errors, setErrors] = useState({});
     const [agree, setAgree] = useState(false);
+    const [usernameAvailable, setUsernameAvailable] = useState(null); // 중복 확인 상태
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -27,46 +28,41 @@ function Signup() {
         }
     };
 
-// 유효성 검사 함수
-const validateField = (name, value) => {
-    const errorMessages = {
-        username: '아이디를 입력하세요.',
-        password: '비밀번호를 입력하세요.',
-        name: '이름을 입력하세요.',
-        tel: '전화번호를 입력하세요.',
-        email: '이메일을 입력하세요.'
+    // 유효성 검사 함수
+    const validateField = (name, value) => {
+        const errorMessages = {
+            username: '아이디를 입력하세요.',
+            password: '비밀번호를 입력하세요.',
+            name: '이름을 입력하세요.',
+            tel: '전화번호를 입력하세요.',
+            email: '이메일을 입력하세요.'
+        };
+
+        const regexes = {
+            username: /^[A-Za-z0-9]{5,50}$/, // username에 대한 정규식
+            password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/,
+            name: /^[A-Za-z가-힣]{1,10}$/,
+            tel: /^\d{11}$/,
+            email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        };
+
+        let error = '';
+
+        if (value === '') {
+            error = errorMessages[name] || '';
+        } else if (regexes[name] && !regexes[name].test(value)) {
+            if (name === 'username') error = '아이디는 영문 또는 숫자, 5자 이상 50자 이하로 입력하세요.';
+            else if (name === 'password') error = '비밀번호는 8~30자, 하나 이상의 영문과 숫자를 포함해야 합니다.';
+            else if (name === 'name') error = '이름은 한글 또는 영문, 10자 이하로 입력하세요.';
+            else if (name === 'tel') error = '전화번호는 11자리 숫자만 가능합니다.';
+            else if (name === 'email') error = '유효한 이메일 형식을 입력하세요.';
+        } else {
+            error = '';
+        }
+
+        setErrors((prev) => ({ ...prev, [`${name}Error`]: error }));
+        return !error;
     };
-
-    const regexes = {
-        username: /^[A-Za-z0-9]{5,50}$/,
-        password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/,
-        name: /^[A-Za-z가-힣]{1,10}$/,
-        tel: /^\d{11}$/,
-        email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    };
-
-    let error = '';
-
-    // 필드가 비어있는 경우 기본 메시지
-    if (value === '') {
-        error = errorMessages[name] || '';
-    }
-    // 필드가 비어있지 않으면 정규식을 통해 검사
-    else if (regexes[name] && !regexes[name].test(value)) {
-        if (name === 'username') error = '아이디는 영문 또는 숫자, 5자 이상 50자 이하로 입력하세요.';
-        else if (name === 'password') error = '비밀번호는 8~30자, 하나 이상의 영문과 숫자를 포함해야 합니다.';
-        else if (name === 'name') error = '이름은 한글 또는 영문, 10자 이하로 입력하세요.';
-        else if (name === 'tel') error = '전화번호는 11자리 숫자만 가능합니다.';
-        else if (name === 'email') error = '유효한 이메일 형식을 입력하세요.';
-    } else {
-        // 유효성 검사를 통과한 경우 오류 메시지를 빈 문자열로 설정
-        error = '';
-    }
-
-    setErrors((prev) => ({ ...prev, [`${name}Error`]: error }));
-    return !error;
-};
-
 
     useEffect(() => {
         const { username, password, name, tel, email } = member;
@@ -77,18 +73,35 @@ const validateField = (name, value) => {
         validateField('email', email);
     }, [member]);
 
+    // 중복 확인 버튼 클릭 시 서버에 요청
+    const checkUsernameAvailability = async () => {
+        try {
+            const response = await axiosInstance.post('/doori/usernamecheck', null, {
+                params: { username: member.username } // 요청 파라미터로 username 전달
+            });
+
+            if (response.status === 200) {
+                setUsernameAvailable(true);  // 사용 가능한 경우
+            } else {
+                setUsernameAvailable(false);  // 이미 존재하는 경우
+            }
+        } catch (error) {
+            console.error('중복 확인 실패:', error);
+            setUsernameAvailable(false);
+        }
+    };
+
     const signupHandler = async (e) => {
         e.preventDefault();
 
-        if (Object.values(errors).some((error) => error !== '') || !agree) {
+        if (Object.values(errors).some((error) => error !== '') || !agree || usernameAvailable === false) {
             alert('회원가입 정보를 확인해주세요.');
             return;
         }
 
         try {
             const responseData = await axiosInstance.post('/doori/signup', member);
-            console.log(responseData)
-            if (responseData.status==200) {
+            if (responseData.status === 200) {
                 alert('회원가입이 성공했습니다!');
                 navigate('/doori');
             } else {
@@ -96,7 +109,7 @@ const validateField = (name, value) => {
             }
         } catch (error) {
             console.error('회원가입 실패:', error);
-            alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+            alert(error.response.data);
         }
     };
 
@@ -107,6 +120,9 @@ const validateField = (name, value) => {
                     <label>아이디:
                         <input type="text" name="username" value={member.username} onChange={handleChange} />
                     </label>
+                    <button type="button" onClick={checkUsernameAvailability}>중복 확인</button>
+                    {usernameAvailable === false && <div style={{ color: 'red' }}>이미 사용 중인 아이디입니다.</div>}
+                    {usernameAvailable === true && <div style={{ color: 'green' }}>사용 가능한 아이디입니다.</div>}
                     <div>{errors.usernameError}</div>
 
                     <label>비밀번호:

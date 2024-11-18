@@ -2,48 +2,35 @@
   background-color: #393939;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   color: #fff;
   font-family: "source-han-serif-korean", serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 100px; 
+  height: 100px;
   padding: 0 2%; /* 양옆에 여백 추가 */
 }
 
-.Header .sidebar {
-  background-color: #5A5C5C;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 10%;  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40%;
-  margin: 0;
-}
-
-.Header .sidebar:hover {
-  background-color: #7B7D7D;
-}
-
 .Header img {
-  width: 70%;  
+  width: 70%;
   height: auto;
   margin: 0 auto;
-  display: block;  
+  display: block;
+}
+
+.Header .left-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  width: 20%;
 }
 
 .Header .search-wrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
-  gap: 10px; 
-  width: 60%; 
+  justify-content: flex-end;
+  gap: 10px;
+  width: 60%; /* 오른쪽 검색창의 크기 유지 */
 }
 
 .Header input[type="text"] {
@@ -53,7 +40,7 @@
   padding: 1% 2%;
   border-radius: 5px;
   font-size: 1rem;
-  width: 80%;  
+  width: 80%;
   transition: border-color 0.3s ease;
 }
 
@@ -61,9 +48,8 @@
   background-color: #555;
   color: white;
   border: none;
-  padding: 1% 2%;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 80%;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 25%;
@@ -76,7 +62,7 @@
 
 .auth-link {
   font-size: small;
-  color: white; 
+  color: white;
   text-decoration: none;
   margin: 0 10px;
 }
@@ -85,10 +71,27 @@
   text-decoration: underline;
 }
 
-.Header .left-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 2%;
-  width: 20%; 
+.bg-body-tertiary {
+  background-color: transparent !important;
 }
+
+.navList {
+  font-family: "source-han-serif-korean", serif;
+  font-size: large;
+}
+
+.offHeader {
+  font-family: "source-han-serif-korean", serif;
+  font-size: larger;
+}
+
+.navList strong :hover{
+  text-decoration: underline;
+}
+/* 제목 아래에 줄을 그을 스타일 */
+.menu-divider {
+  border: 1px solid black; /* 줄 색상 */
+  margin: 10px 0; /* 상하 여백 */
+}
+
+
