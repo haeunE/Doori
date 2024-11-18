@@ -1,0 +1,40 @@
+.cards__container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1120px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cards__wrapper {
+  display: flex;
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+  gap: 15px; /* 카드 간 간격 */
+  justify-content: center; /* 카드들을 가운데 정렬 */
+}
+
+.cards__items {
+  margin-bottom: 24px;
+  flex-wrap: wrap; /* 자동 줄바꿈 */
+  padding: 0;
+  margin: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .cards__items {
+    display: flex;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .cards__wrapper {
+    justify-content: space-around; /* 작은 화면에서는 좌우 정렬 */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cards__wrapper {
+    justify-content: center; /* 더 작은 화면에서는 가운데 정렬 */
+    gap: 7px; /* 간격 축소 */
+  }
+}
