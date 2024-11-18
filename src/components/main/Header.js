@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 
 function Header({isAuth, setIsAuth, setUserInfo}) {
   const [search, setSearch] = useState(""); // 검색어 저장 state
@@ -23,7 +25,38 @@ function Header({isAuth, setIsAuth, setUserInfo}) {
 
   return (
     <div className="Header">
-      <button className="sidebar">sidebar</button>
+      <div className="Nav"> 
+        <Navbar expand={false} className="bg-body-tertiary mb-3" variant="dark">
+          <Container fluid>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-false`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-false`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-false`}
+              placement="start"
+            >
+              <Offcanvas.Header closeButton className="offHeader">
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
+                 Menu
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              
+              {/* 메뉴 제목 아래에 줄 추가 */}
+              <hr className="menu-divider" />
+              
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3 navList">
+                  <strong>
+                  <Nav.Link href="#action1">무-비</Nav.Link>
+                  <Nav.Link href="#action2">예매</Nav.Link>
+                  <Nav.Link href="#action3">예매 내역</Nav.Link>
+                  <Nav.Link href="#action4">관람평</Nav.Link>
+                  </strong>
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      </div>
       <Link to="/doori">
         <img src="/img/logo_header.png" alt="doorimain" />
       </Link>
