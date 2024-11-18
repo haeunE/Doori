@@ -7,6 +7,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home';
+import Movies from './pages/Movies';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
@@ -25,6 +26,7 @@ function App() {
         <Route path='/doori' element={<Home />}/>
         <Route path='/doori/signup' element={<Signup />}/>
         <Route path='/doori/login' element={<Login setIsAuth={setIsAuth}/>} />
+        <Route path='/doori/movies' element={<Movies setIsAuth={setIsAuth}/>}/>
       </Routes>
       <Footer/>
     </div>
