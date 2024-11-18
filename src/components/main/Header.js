@@ -15,11 +15,11 @@ function Header({isAuth, setIsAuth, setUserInfo}) {
     // 실제 검색 로직을 여기에 추가 필요
   }
 
-  // function logout(){
-  //   sessionStorage.removeItem('jwt'),
-  //   setIsAuth(false),
-  //   setUserInfo()
-  // }
+  function logout(){
+    sessionStorage.removeItem('jwt');
+    setIsAuth(false);
+    setUserInfo()
+  }
 
   return (
     <div className="Header">
@@ -33,7 +33,7 @@ function Header({isAuth, setIsAuth, setUserInfo}) {
           {isAuth ? (
             <>
               <Link to="/doori/userInfo" className="auth-link">내정보</Link>
-              <Link to="/doori/logout" className="auth-link"/*onClick={logout}*/>로그아웃</Link>
+              <Link to="/doori/logout" className="auth-link"onClick={logout}>로그아웃</Link>
             </>
           ) : (
             <>
