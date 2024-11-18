@@ -6,7 +6,6 @@ function Kakao({setIsAuth}){
   const navigate = useNavigate();
 
   const responseKakao = (response) => {
-    console.log(response)
     axiosInstance.post('/doori/login/kakao',{
       username:response.profile.properties.nickname
     }).then(response =>{
