@@ -1,55 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./css/Movies.css"
 import Cards from "../components/js/Cards.js";
+import axiosInstance from "../axiosInstance"
 
 function Movies() {
-  const [movieList, setMovieList] = useState([
-    {
-      link:"/login",
-      poster : "/img/비긴어게인.png",
-      title : "비긴어게인",
-      top : 34,
-      rated : "/icons/all_icon.svg"
-    },
-    {
-      link:"/login",
-      poster : "/img/비긴어게인.png",
-      title : "비긴어게인",
-      top : 34,
-      rated : "/icons/all_icon.svg"
-    },
-    {
-      link:"/login",
-      poster : "/img/비긴어게인.png",
-      title : "비긴어게인",
-      top : 34,
-      rated : "/icons/all_icon.svg"
-    },
-    {
-      link:"/login",
-      poster : "/img/비긴어게인.png",
-      title : "비긴어게인",
-      top : 34,
-      rated : "/icons/all_icon.svg"
-    }
-  ])
-  // useEffect(()=>{
-  //   axiosInstance.get('/movies')
-  //     .then(response =>{
-  //       console.log(response.data)
-  //       setBoardList(response.data)
-  //     }).catch(error =>{
-  //       console.log(error)
-  //     })
-  // },[])
+  const [movieList, setMovieList] = useState([])
+  const [loading , setLoading] = useState(true)
+  
+  useEffect(()=>{
+    axiosInstance.get('/doori/movies')
+      .then(response =>{
+        console.log(response.data)
+        setMovieList([...movieList,...response.data])
+        console.log(movieList)
+        setLoading(false)
+      }).catch(error =>{
+        console.log(error)
+      })
+  },[])
+
+  
+if (loading)
+  return <div>로딩중</div>
+
   // movieList 데이터를 변환하여 Cards에 전달
   const transformedList = movieList.map((movie) => ({
-    link: movie.link,
+    link: "doori/movies/"+movie.id,
     title: movie.title,
-    img: movie.poster,
-    num : movie.top+"%",
+    img: movie.moviePoster,
+    num : "30"+"%",
     some : "예매율",
-    icon: movie.rated,
+    icon: "/icons/"+String(movie.ratedYn).substring(0,3)+"_icon.svg"
   }));
 
   return (
