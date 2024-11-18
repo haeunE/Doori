@@ -28,6 +28,7 @@ function Login({ setIsAuth }) {
             axiosInstance
               .post("/doori/login", user)
               .then((response) => {
+                alert("로그인 성공")
                 const jwt = response.headers.getAuthorization;
                 if (jwt != null) {
                   sessionStorage.setItem("jwt", jwt);
@@ -36,6 +37,12 @@ function Login({ setIsAuth }) {
                 }
               })
               .catch((error) => {
+                 // 에러 메시지 출력
+                 if (error.response && error.response.data) {
+                  alert("로그인 실패! 아이디와 비밀번호를 확인해주세요");
+                } else {
+                  alert("알 수 없는 오류가 발생했습니다.");
+                }
                 console.log(error);
               });
           }}
