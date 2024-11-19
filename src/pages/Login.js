@@ -21,8 +21,8 @@ function Login({ setIsAuth }) {
   return (
     <div className="Login">
       <div className="loginInfo">
-        <strong>ID:</strong> <input type="text" name="username" onChange={onChangeHandler} /><br />
-        <strong>password:</strong> <input type="password" name="password" onChange={onChangeHandler} />
+        <strong>ID:<input type="text" name="username" onChange={onChangeHandler} /></strong> <br />
+        <strong>password: <input type="password" name="password" onChange={onChangeHandler} /></strong>
         <button
           onClick={() => {
             axiosInstance
@@ -30,6 +30,7 @@ function Login({ setIsAuth }) {
               .then((response) => {
                 alert("로그인 성공")
                 const jwt = response.headers.getAuthorization;
+                sessionStorage.setItem("username", user.username);
                 if (jwt != null) {
                   sessionStorage.setItem("jwt", jwt);
                   setIsAuth(true);
@@ -49,8 +50,8 @@ function Login({ setIsAuth }) {
         >
           로그인
         </button>
-        <div className="singupLink">
-          <Link to="/doori/signup" className="link">
+        <div className="signupLink">
+          <Link to="/doori/signup">
             회원가입
           </Link>
         </div>
