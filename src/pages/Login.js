@@ -21,8 +21,8 @@ function Login({ setIsAuth }) {
   return (
     <div className="Login">
       <div className="loginInfo">
-        <strong>ID:</strong> <input type="text" name="username" onChange={onChangeHandler} /><br />
-        <strong>password:</strong> <input type="password" name="password" onChange={onChangeHandler} />
+        <strong>ID:<input type="text" name="username" onChange={onChangeHandler} /></strong> <br />
+        <strong>password: <input type="password" name="password" onChange={onChangeHandler} /></strong>
         <button
           onClick={() => {
             axiosInstance
@@ -49,7 +49,7 @@ function Login({ setIsAuth }) {
         >
           로그인
         </button>
-        <div className="singupLink">
+        <div className="signupLink">
           <Link to="/doori/signup" className="link">
             회원가입
           </Link>

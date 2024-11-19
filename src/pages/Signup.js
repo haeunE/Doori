@@ -147,9 +147,12 @@ function Signup() {
 
                     <label>
                         개인정보 수집 동의
-                        <input type="checkbox" name="agree" checked={agree} onChange={handleChange} />
+                        <div className="agreeWrapper">
+                            <input type="checkbox" name="agree" checked={agree} onChange={handleChange} />
+                        </div>
+                        <div>{!agree && <span style={{ color: 'red' }}>개인정보 수집 동의는 필수입니다.</span>}</div>
                     </label>
-                    <div>{!agree && <span style={{ color: 'red' }}>개인정보 수집 동의는 필수입니다.</span>}</div>
+
 
                     <button type="submit">회원가입</button>
                 </div>
