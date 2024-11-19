@@ -1,3 +1,5 @@
+/* UserUpdate에도 사용 */
+
 .Signup {
   font-family: "source-han-serif-korean", serif;
   text-align: left;
@@ -55,7 +57,7 @@
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  width: 40%;
+  width: 100%;
   transition: background-color 0.3s ease;
   box-sizing: border-box;
   display: block;
