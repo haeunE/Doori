@@ -30,6 +30,7 @@ function Login({ setIsAuth }) {
               .then((response) => {
                 alert("로그인 성공")
                 const jwt = response.headers.getAuthorization;
+                sessionStorage.setItem("username", user.username);
                 if (jwt != null) {
                   sessionStorage.setItem("jwt", jwt);
                   setIsAuth(true);
@@ -50,7 +51,7 @@ function Login({ setIsAuth }) {
           로그인
         </button>
         <div className="signupLink">
-          <Link to="/doori/signup" className="link">
+          <Link to="/doori/signup">
             회원가입
           </Link>
         </div>

@@ -1,28 +1,29 @@
 .Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   background-color: #393939;
+  color: #fff;
+  font-family: "source-han-serif-korean", serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
-  font-family: "source-han-serif-korean", serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 100px;
-  width: 100%;
   padding: 0 2%;
 }
 
 .Header img {
   width: 70%;
-  height: auto;
   margin: 0 auto;
-  display: block;
   object-fit: contain;
 }
 
 .header-right {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: flex-end;
   position: absolute;
   right: 20px;
@@ -30,25 +31,17 @@
   gap: 3%;
 }
 
-.auth-links {
+.auth-links,
+.search-wrapper {
   display: flex;
   gap: 8px;
 }
 
-.search-wrapper {
-  display: flex;
-  gap: 2px;
-}
-
-.Header input,
-.Header button.search {
+.Header input {
   background-color: #555;
   color: white;
-  border-radius: 5px;
-}
-
-.Header input {
   border: 1px solid #777;
+  border-radius: 5px;
   padding: 2px 12px;
   font-size: 0.85rem;
   width: 200px;
@@ -56,11 +49,15 @@
 }
 
 .Header button.search {
+  background-color: #555;
+  color: white;
   border: none;
-  font-size: 80%;
+  border-radius: 5px;
+  font-size: 0.85rem;
   cursor: pointer;
   width: 50px;
   height: 30px;
+  transition: 0.3s;
 }
 
 .Header button.search:hover {
@@ -72,6 +69,7 @@
   font-size: 12px;
   color: white;
   text-decoration: none;
+  margin: 0 10%;
 }
 
 .auth-link:hover {
@@ -93,7 +91,6 @@
   }
 
   .header-right {
-    position: absolute;
     right: 5%;
     top: 10%;
   }

@@ -1,14 +1,14 @@
 .Login {
   font-family: "source-han-serif-korean", serif;
   text-align: left;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
   width: 400px;
-  padding: 3% 2%;
+  padding: 5% 2%;
   margin: 0 auto;
+  margin-top: 80px;
 }
 
 .loginInfo {
@@ -23,20 +23,19 @@
 
 .loginInfo strong {
   display: block;
-  margin-bottom: 10px;
 }
 
 .loginInfo input {
   width: 100%;
-  padding: 3%;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
   background-color: #f9f9f9;
-  margin-bottom: 1.5%;
+  box-sizing: border-box;
 }
 
-.Login button {
+.Login button, .signupLink {
   background-color: #5A5C5C;
   color: white;
   border: none;
@@ -47,41 +46,24 @@
   width: 100%;
   transition: background-color 0.3s ease;
   box-sizing: border-box;
-  margin-top: 10%;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.signupLink a {
+  font-family: "source-han-serif-korean", serif;
+  color: white;
+  text-decoration: none;
 }
 
 .Login button:hover {
   background-color: #7B7D7D;
 }
 
-.Login .signupLink {
-  margin-top: 15px;
-  text-align: center;
-}
-
-.Login .signupLink .link {
-  font-size: 1rem;
-  color: #5A5C5C;
-  text-decoration: none;
-}
-
-.Login .signupLink .link:hover {
-  text-decoration: underline;
-}
-
-/* 로그인 버튼과 회원가입 버튼 일관된 스타일 */
 .Login .buttonContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* 버튼 간의 간격 */
-  width: 100%;
-  align-items: center; /* 중앙 정렬 */
-  margin-top: 20px;
-}
-
-.Login .buttonContainer button {
   background-color: #5A5C5C;
   color: white;
+  text-align: center;
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
@@ -90,42 +72,6 @@
   width: 80%; /* 버튼의 너비를 80%로 설정 */
   transition: background-color 0.3s ease;
   box-sizing: border-box;
-}
-
-.Login .buttonContainer button:hover {
-  background-color: #7B7D7D;
-}
-
-.Login .buttonContainer .signupLink {
-  background-color: #5A5C5C;
-  color: white;
-  text-align: center;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 80%;
-  transition: background-color 0.3s ease;
-  box-sizing: border-box;
-}
-
-.Login .buttonContainer .signupLink .link {
-  font-size: 1rem;
-  color: white;
-  text-decoration: none;
-}
-
-.Login .buttonContainer .signupLink .link:hover {
-  text-decoration: underline;
-}
-
-.socialLogin {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 400px;
-  margin-top: 5%;
 }
 
 .socialLogin div {
@@ -138,8 +84,4 @@
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.socialLogin div:hover {
-  background-color: #ddd;
 }
