@@ -1,0 +1,128 @@
+/* 전체 컨테이너 스타일 */
+.detail__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #393939 ;
+  font-family: "source-han-serif-korean", serif;
+}
+
+/* 아이템 컨테이너 스타일 */
+.detail__items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  background: #fff;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  overflow: hidden;
+}
+
+/* 세부사항 */
+.detail__items__details {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+/* 이미지 섹션 */
+.detail__items__img {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.detail__items__poster {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  height: 100%;
+}
+
+/* 정보 섹션 */
+.detail__items__info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail__items__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.detail__items__short {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.detail__items__long {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.detail__items__long li {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.detail__items__btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.detail__items__btn:hover {
+  background-color: #0056b3;
+}
+
+/* 탭 메뉴 스타일 */
+.tabs {
+  display: flex;
+  justify-content: center
+}
+
+.tab {
+  width: -webkit-fill-available;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tab.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.tab:not(.active):hover {
+  background: #e9ecef;
+}
+
+/* 탭 내용 */
+.tab__content {
+  border: 1px solid #666;
+  padding: 20px;
+  border-radius: 5px;
+  background: #fff;
+}
+.tab__content p {
+  color: #666;
+  font-size: small;
+  word-wrap: break-word; /* 긴 단어를 줄바꿈 */
+  word-break: break-word; /* 텍스트가 너무 길면 줄바꿈 */
+  overflow-wrap: break-word; /* 최신 브라우저에서 사용 */
+  white-space: normal; /* 줄바꿈을 허용 */
+  line-height: 1.6; /* 줄 간격 조정 (가독성 개선) */
+}
