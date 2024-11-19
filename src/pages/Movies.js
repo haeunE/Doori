@@ -34,7 +34,7 @@ function Movies() {
     }
   ])
   // useEffect(()=>{
-  //   axiosInstance.get('/movies')
+  //   axiosInstance.get('/doori/movies')
   //     .then(response =>{
   //       console.log(response.data)
   //       setBoardList(response.data)
