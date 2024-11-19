@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
 import Reservation from './pages/Reservation';
+import Test from './utils/Test';
+import SeatBooking from './pages/SeatBooking';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
@@ -28,7 +30,9 @@ function App() {
         <Route path='/doori/signup' element={<Signup />}/>
         <Route path='/doori/login' element={<Login setIsAuth={setIsAuth}/>} />
         <Route path='/doori/movies' element={<Movies setIsAuth={setIsAuth}/>}/>
-        <Route path='/doori/reservation' element={<Reservation isAuth={isAuth} />} />
+        <Route path='/doori/test' element={<Test/>}/>
+        {/* 임시 route */}
+        <Route path='/doori/seatbooking' element={<SeatBooking/>} />
       </Routes>
       <Footer/>
     </div>
