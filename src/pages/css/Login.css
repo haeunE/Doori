@@ -1,14 +1,14 @@
 .Login {
-  display: flex;
+  font-family: "source-han-serif-korean", serif;
+  text-align: left;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
-  width: 100%; /* 부모 요소 크기에 맞게 전체 너비 사용 */
-  max-width: 600px; /* 최대 너비를 적당히 설정 (예: 600px) */
+  width: 400px;
   padding: 5% 2%;
   margin: 0 auto;
-  font-family: "source-han-serif-korean", serif;
+  margin-top: 80px;
 }
 
 .loginInfo {
@@ -16,30 +16,26 @@
   padding: 5%;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%; /* 너비를 100%로 설정하여 부모 컨테이너에 맞게 크기 조정 */
+  width: 100%;
+  max-width: 400px;
   margin-bottom: 5%;
-  max-width: 400px; /* 최대 너비를 설정해줍니다 */
 }
 
-.loginInfo label {
-  display: block; /* 레이블을 블록으로 표시 */
-  margin-bottom: 8px; /* 레이블과 input 사이 간격 */
-  font-weight: bold;
-  color: #333;
+.loginInfo strong {
+  display: block;
 }
 
 .loginInfo input {
-  width: 100%; /* 너비를 100%로 설정하여 부모 요소 크기에 맞게 조정 */
-  padding: 10px;
-  margin-bottom: 15px;
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1rem; /* 더 적당한 글꼴 크기 */
+  font-size: 1rem;
   background-color: #f9f9f9;
   box-sizing: border-box;
 }
 
-.Login button {
+.Login button, .signupLink {
   background-color: #5A5C5C;
   color: white;
   border: none;
@@ -47,21 +43,35 @@
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  width: 40%;
+  width: 100%;
   transition: background-color 0.3s ease;
   box-sizing: border-box;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.signupLink a {
+  font-family: "source-han-serif-korean", serif;
+  color: white;
+  text-decoration: none;
 }
 
 .Login button:hover {
   background-color: #7B7D7D;
 }
 
-.socialLogin {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 400px;
-  margin-top: 5%;
+.Login .buttonContainer {
+  background-color: #5A5C5C;
+  color: white;
+  text-align: center;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%; /* 버튼의 너비를 80%로 설정 */
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .socialLogin div {
@@ -74,23 +84,4 @@
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.socialLogin div:hover {
-  background-color: #ddd;
-}
-
-.Login strong {
-  display: flex;
-  margin-left: 8%;
-}
-
-.link {
-  font-size: 0.9rem;
-  color: black; 
-  text-decoration: none;
-}
-
-.link:hover {
-  text-decoration: underline;
 }

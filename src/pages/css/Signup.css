@@ -1,99 +1,140 @@
 .Signup {
-    font-family: "source-han-serif-korean", serif;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-    width: 70%;
-    max-width: 100vh;
-    padding: 5% 2%;
-    margin: 0% auto;
-  }
-  
-  .Signup .div {
-    margin-left: 20px;
-  }
-  
-  .Signup .input {
-    gap: 10px;
-    display: grid;
-    width: 80%;
-    padding: 2%;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .Signup label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .Signup input {
-    width: 100%;
-    padding: 3% 5%;
-    margin-bottom: 5%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 100%;
-    background-color: #f9f9f9;
-  }
-  
-  .Signup button {
-    background-color: #5A5C5C;
-    color: white;
-    border: none;
-    padding: 3% 5%;
-    font-size: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 40%;
-    transition: background-color 0.3s ease;
-  }
-  
-  .Signup button:hover {
-    background-color: #7B7D7D;
-  }
-  
-  .socialLogin {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 400px;
-    margin-top: 5%;
-  }
-  
-  .socialLogin div {
-    padding: 3% 5%;
-    background-color: #f0f0f0;
-    color: #555;
-    font-size: 4%;
-    border-radius: 5px;
-    width: 48%;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .socialLogin div:hover {
-    background-color: #ddd;
-  }
-  
-  .Signup strong {
-    display: flex;
-    margin-left: 8%;
-  }
-  
-  .link {
-    font-size: small;
-    color: black;
-    text-decoration: none;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-  }
-  
+  font-family: "source-han-serif-korean", serif;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  width: 400px;
+  padding: 5% 2%;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+
+.Signup .div {
+  margin-left: 20px;
+  width: 100%;
+}
+
+.Signup label {
+  display: block; /* 레이블을 블록으로 표시 */
+  font-weight: bold;
+  color: #333;
+  margin-top: 15px;
+}
+
+
+.Signup input[type="checkbox"] {
+  margin-left: auto; /* 체크박스를 오른쪽으로 정렬 */
+  right: 0;
+  position: absolute;
+  margin-top: -20px;
+}
+
+.Signup .agreeWrapper {
+  display: flex;
+  justify-content: right;
+  align-items: center; /* 아이템을 수직으로 정렬 */
+  margin-bottom: 15px; /* 여백 추가 */
+}
+
+.Signup input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.Signup button {
+  background-color: #5A5C5C;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 40%;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+button:hover {
+  background-color: #7B7D7D;
+}
+
+.inputWithButton {
+  position: relative;
+  display: flex;
+}
+
+.inputWithButton input {
+  width: 100%; /* 버튼 크기를 제외한 나머지 영역 */
+  box-sizing: border-box;
+}
+
+.inputWithButton button {
+  position: absolute;
+  right: 0; /* 입력창의 오른쪽에 붙임 */
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%; /* 입력창과 같은 높이 */
+  width : 30%;
+  padding: 0 10px;
+  border: none;
+  background-color: #5a5c5c;
+  color: white;
+  border-radius: 0 5px 5px 0; /* 오른쪽 모서리 둥글게 */
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  margin-top: 0 !important;
+}
+
+.inputWithButton button:hover {
+  background-color: #7b7d7d;
+}
+
+
+.socialLogin {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 5%;
+}
+
+.socialLogin div {
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 14px;
+  border-radius: 5px;
+  width: 48%;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.socialLogin div:hover {
+  background-color: #ddd;
+}
+
+.Signup strong {
+  display: flex;
+  margin-left: 8%;
+}
+
+.link {
+  font-size: small;
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
