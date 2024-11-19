@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Movies from './pages/Movies';
 import Test from './utils/Test';
 import MovieDetail from './components/js/MovieDetail';
+import UserUpdate from './pages/UserUpdate';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
@@ -31,6 +32,7 @@ function App() {
         <Route path='/doori/movies' element={<Movies setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/test' element={<Test setIsAuth={setIsAuth}/>}/>
         <Route path="/doori/movies/:id" element={<MovieDetail />} />
+        <Route path='/doori/userupdate' element={<UserUpdate setIsAuth={setIsAuth}/>}/>
       </Routes>
       <Footer/>
     </div>

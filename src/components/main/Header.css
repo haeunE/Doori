@@ -1,47 +1,51 @@
 .Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   background-color: #393939;
+  color: #fff;
+  font-family: "source-han-serif-korean", serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
-  font-family: "source-han-serif-korean", serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 100px;
-  padding: 0 2%; /* 양옆에 여백 추가 */
+  padding: 0 2%;
 }
 
 .Header img {
   width: 70%;
-  height: auto;
   margin: 0 auto;
-  display: block;
+  object-fit: contain;
 }
 
-.Header .left-section {
+.header-right {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 15px;
-  width: 20%;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  right: 20px;
+  top: 3%;
+  gap: 3%;
 }
 
-.Header .search-wrapper {
+.auth-links,
+.search-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  width: 60%; /* 오른쪽 검색창의 크기 유지 */
+  gap: 8px;
 }
 
-.Header input[type="text"] {
+.Header input {
   background-color: #555;
   color: white;
   border: 1px solid #777;
-  padding: 1% 2%;
   border-radius: 5px;
-  font-size: 1rem;
-  width: 80%;
-  transition: border-color 0.3s ease;
+  padding: 2px 12px;
+  font-size: 0.85rem;
+  width: 200px;
+  height: 30px;
 }
 
 .Header button.search {
@@ -49,10 +53,11 @@
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 80%;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 25%;
+  width: 50px;
+  height: 30px;
+  transition: 0.3s;
 }
 
 .Header button.search:hover {
@@ -61,10 +66,10 @@
 }
 
 .auth-link {
-  font-size: small;
+  font-size: 12px;
   color: white;
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 10%;
 }
 
 .auth-link:hover {
@@ -75,23 +80,32 @@
   background-color: transparent !important;
 }
 
-.navList {
-  font-family: "source-han-serif-korean", serif;
-  font-size: large;
+/* 반응형 처리 */
+@media (max-width: 768px) {
+  .Header {
+    padding: 0 1%;
+  }
+
+  .Header img {
+    width: 50%;
+  }
+
+  .header-right {
+    right: 5%;
+    top: 10%;
+  }
 }
 
-.offHeader {
-  font-family: "source-han-serif-korean", serif;
-  font-size: larger;
-}
+@media (max-width: 480px) {
+  .Header {
+    height: 80px;
+  }
 
-.navList strong :hover{
-  text-decoration: underline;
-}
-/* 제목 아래에 줄을 그을 스타일 */
-.menu-divider {
-  border: 1px solid black; /* 줄 색상 */
-  margin: 10px 0; /* 상하 여백 */
-}
+  .Header img {
+    width: 40%;
+  }
 
-
+  .Header input {
+    width: 150px;
+  }
+}
