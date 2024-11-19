@@ -1,9 +1,33 @@
-.seat-map {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.screen{
+  background-color: black;
+  padding: 2 2%;
+  margin-bottom: 5%;
+  height: 50%;
 }
 
+.selected-seats {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9; /* 배경색 */
+  border: 1px solid #ddd; /* 경계선 */
+  border-radius: 8px; /* 둥근 모서리 */
+}
 
+.selected-seats h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
 
+.selected-seats strong {
+  display: inline-block; /* 태그처럼 보이게 */
+  margin: 5px;
+  padding: 8px 12px; /* 내부 여백 */
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffffff; /* 텍스트 색상 */
+  background-color: rgb(81, 187, 152); /* 파란색 배경 */
+  border-radius: 20px; /* 둥근 테두리 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 살짝 입체감 */
+  transition: transform 0.2s ease-in-out; /* 애니메이션 효과 */
+}
 

@@ -1,12 +1,10 @@
-/* 좌석 행 스타일 */
 .seat-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* 작은 화면에서 좌석이 한 줄로 길게 늘어날 때 줄 바꿈 */
+  flex-wrap: wrap; 
   margin-bottom: 10px;
 }
 
-/* 기본적으로 좌석 간격 설정 */
 .seat-row .seat {
   margin: 5px;
 }

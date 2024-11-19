@@ -16,7 +16,7 @@ const SeatBooking = () => {
     { row: "C", seats: [1, 2, 3, 4, 5] },
     { row: "D", seats: [1, 2, 3, 4, 5] },
   ];
-  
+
   const handleSeatClick = (seatId) => {
     setSelectedSeats((prev) =>
       prev.includes(seatId)
@@ -44,7 +44,7 @@ const SeatBooking = () => {
     return <div>로딩중</div> // 로딩중인 사진? 넣어도 됨
     return (
       <div className="seat-booking">
-        <h1>영화관 좌석 예약</h1>
+        <h1 className="screen">screen</h1>
         {seatLayout.map((row) => (
           <SeatRow
             key={row.row}
@@ -57,13 +57,14 @@ const SeatBooking = () => {
         ))}
         <div className="selected-seats">
           <h2>선택한 좌석:</h2>
-          { 
-            selectedSeats.map((seat) => {
-              return <p key={seat}>{seat}</p>;  // 각 항목에 대해 명시적으로 return
-            })
-          }
+          {selectedSeats.length > 0 ? (
+            selectedSeats.map((seat) => (
+              <strong key={seat}>{seat}</strong>
+            ))
+          ) : (
+            <strong>선택한 좌석이 없습니다.</strong>
+          )}
         </div>
-
       </div>
     );
 };
