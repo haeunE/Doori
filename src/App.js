@@ -8,9 +8,10 @@ import Login from './pages/Login';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
-import Test from './utils/Test';
 import MovieDetail from './components/js/MovieDetail';
 import UserUpdate from './pages/UserUpdate';
+import Test from './utils/Test';
+import SeatBooking from './pages/SeatBooking';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
@@ -33,6 +34,8 @@ function App() {
         <Route path='/doori/test' element={<Test setIsAuth={setIsAuth}/>}/>
         <Route path="/doori/movies/:id" element={<MovieDetail />} />
         <Route path='/doori/userupdate' element={<UserUpdate setIsAuth={setIsAuth}/>}/>
+        {/* 임시 route */}
+        <Route path='/doori/seatbooking' element={<SeatBooking/>} />
       </Routes>
       <Footer/>
     </div>

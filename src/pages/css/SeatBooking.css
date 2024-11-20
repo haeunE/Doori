@@ -1,0 +1,51 @@
+.seat-booking {
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center;
+  margin-top: 40px; 
+}
+
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  margin-top: 90px;
+  margin-bottom: 50px; 
+  height: 50%; 
+  width: 50%;
+  color: white;
+  font-size: 30px;
+  border-radius: 8px;
+}
+
+
+.selected-seats {
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  max-width: 80%; 
+  text-align: center; 
+}
+
+.selected-seats h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.selected-seats strong {
+  display: inline-block; 
+  margin: 5px;
+  padding: 8px 12px; 
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffffff; 
+  background-color: rgb(81, 187, 152); 
+  border-radius: 10px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease-in-out;
+}

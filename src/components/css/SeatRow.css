@@ -1,0 +1,10 @@
+.seat-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; 
+  margin-bottom: 10px;
+}
+
+.seat-row .seat {
+  margin: 5px;
+}

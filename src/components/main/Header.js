@@ -46,10 +46,10 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3 navList">
                   <strong>
-                    <Nav.Link href="#action1">무-비</Nav.Link>
-                    <Nav.Link href="#action2">예매</Nav.Link>
-                    <Nav.Link href="#action3">예매 내역</Nav.Link>
-                    <Nav.Link href="#action4">관람평</Nav.Link>
+                  <Nav.Link href="/doori/movies">무-비</Nav.Link>
+                  <Nav.Link href="/doori/reservation">예매</Nav.Link>
+                  <Nav.Link href="/doori/myreservation">예매 내역</Nav.Link>
+                  <Nav.Link href="/doori/myreviews">관람평</Nav.Link>
                   </strong>
                 </Nav>
               </Offcanvas.Body>
