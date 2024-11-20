@@ -71,7 +71,7 @@ const SeatBooking = () => {
             <strong>선택한 좌석이 없습니다.</strong>
           )}
         </div>
-        <button
+        <button className={`seat-btn ${selectedSeats===0?"disabled":""}`}
         //  onClick={()=>{
         //   const isConfirmed = window.confirm("예매하시겠습니까?")
         //   if(isConfirmed){
