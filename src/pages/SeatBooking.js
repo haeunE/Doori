@@ -1,4 +1,3 @@
-// SeatBooking.js
 import React, { useEffect, useState } from "react";
 import "./css/SeatBooking.css";
 import axiosInstance from "../axiosInstance";
@@ -7,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const SeatBooking = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [price, setPrice] = useState("");
   const [reservedSeats, setReservedSeats] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -24,16 +24,15 @@ const SeatBooking = () => {
   ];
 
   const handleSeatClick = (seatId) => {
-    setSelectedSeats((prev) =>
-      prev.includes(seatId)
+    setSelectedSeats((prev) => {
+      const updatedSeats = prev.includes(seatId)
         ? prev.filter((seat) => seat !== seatId)
-        : [...prev, seatId]
-    );
+        : [...prev, seatId];
+      // 가격을 계산하는 코드
+      setPrice(7000 * updatedSeats.length);
+      return updatedSeats;
+    });
   };
-
-  useEffect(() => {
-    console.log("Selected seats updated:", selectedSeats);
-  }, [selectedSeats]);
 
   // useEffect(()=>{
   //   axiosInstance.get('/doori/reservation/seats')
@@ -70,8 +69,9 @@ const SeatBooking = () => {
           ) : (
             <strong>선택한 좌석이 없습니다.</strong>
           )}
+          <h4>가격 : {price}</h4>
         </div>
-        <button className={`seat-btn ${selectedSeats===0?"disabled":""}`}
+        <button className="seat-btn"
         //  onClick={()=>{
         //   const isConfirmed = window.confirm("예매하시겠습니까?")
         //   if(isConfirmed){
