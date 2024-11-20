@@ -18,7 +18,7 @@
 .Header img {
   width: 70%;
   margin: 0 auto;
-  object-fit: contain;
+  /* object-fit: contain; */
 }
 
 .header-right {

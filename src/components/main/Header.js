@@ -65,7 +65,7 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
         <div className="links-container">
           {isAuth ? (
             <>
-              <Link to="/doori/userInfo" className="auth-link">내정보</Link>
+              <Link to="/doori/userverify" className="auth-link">내정보</Link>
               <Link to="/doori/logout" className="auth-link" onClick={logout}>로그아웃</Link>
             </>
           ) : (
