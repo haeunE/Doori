@@ -6,15 +6,35 @@ import "./css/Signup.css";
 function UserUpdate() {
     const [user, setUser] = useState({
         username: sessionStorage.getItem("username") || "",
-        name: sessionStorage.getItem("name") || "",
-        tel: sessionStorage.getItem("tel") || "",
-        email: sessionStorage.getItem("email") || "",
+        name: "",
+        tel: "",
+        email: "",
         newPassword: "",
         passwordCheck: "",
     });
     const [errors, setErrors] = useState({});
     const [passwordChk, setPasswordChk] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axiosInstance
+            .get("/doori/userupdate") 
+            .then((response) => {
+                setUser(response.data)
+                console.log(user)
+                const { name, tel, email } = response.data;
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    name,
+                    tel,
+                    email,
+                }));
+            })
+            .catch((error) => {
+                console.error("내 정보 조회 실패:", error.response || error.message);
+                alert("회원님의 정보를 불러오는 데 실패했습니다.");
+            });
+    }, []);
 
     useEffect(() => {
         const { newPassword, passwordCheck } = user;
@@ -32,7 +52,7 @@ function UserUpdate() {
     const validatePassword = (name, value) => {
         const errorMessages = {
             newPassword: "비밀번호는 8~30자, 하나 이상의 영문과 숫자를 포함해야 합니다.",
-            passwordCheck: "비밀번호를 확인하세요.",
+            passwordCheck: "비밀번호를 확인해주세요.",
         };
 
         let error = "";
@@ -56,7 +76,7 @@ function UserUpdate() {
         }
 
         axiosInstance
-            .post("/doori/userupdate", user)
+            .put("/doori/userupdate", user)
             .then(() => {
                 alert("회원 정보 수정 완료");
                 navigate("/doori");
@@ -70,7 +90,7 @@ function UserUpdate() {
     const handleDelete = () => {
         if (window.confirm("탈퇴하시겠습니까?")) {
             axiosInstance
-                .post("/doori/userdelete", { username: user.username })
+                .delete("/doori/userdelete")
                 .then(() => {
                     alert("회원 정보가 삭제되었습니다.");
                     sessionStorage.clear();
@@ -87,12 +107,13 @@ function UserUpdate() {
         <div className="Signup">
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>ID: {user.username}</label> <br />
-                    <label>Name: {user.name}</label> <br />
-                    <label>Tel: {user.tel}</label> <br />
-                    <label>Email: {user.email}</label> <br />
+                    <p>ID: {user.username}</p>
+                    <p>Name: {user.name}</p>
+                    <p>Tel: {user.tel}</p>
+                    <p>Email: {user.email}</p>
 
-                    <label>새 비밀번호:
+                    <label>
+                        새 비밀번호:
                         <input
                             type="password"
                             name="newPassword"
@@ -102,7 +123,8 @@ function UserUpdate() {
                     </label>
                     {errors.newPasswordError && <div style={{ color: "red" }}>{errors.newPasswordError}</div>}
 
-                    <label>새 비밀번호 확인:
+                    <label>
+                        새 비밀번호 확인:
                         <input
                             type="password"
                             name="passwordCheck"
@@ -115,7 +137,9 @@ function UserUpdate() {
                     )}
 
                     <button type="submit">수정 완료</button>
-                    <button type="button" onClick={handleDelete}>회원 탈퇴</button>
+                    <button type="button" onClick={handleDelete}>
+                        회원 탈퇴
+                    </button>
                 </div>
             </form>
         </div>
