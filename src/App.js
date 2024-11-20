@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
 import UserUpdate from './pages/UserUpdate';
-import Reservation from './pages/Reservation';
 import Test from './utils/Test';
 import SeatBooking from './pages/SeatBooking';
 
