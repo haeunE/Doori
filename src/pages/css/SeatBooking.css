@@ -1,0 +1,127 @@
+.seat-booking {
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center;
+  margin-top: 40px; 
+}
+
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  margin-top: 90px;
+  margin-bottom: 50px; 
+  height: 50%; 
+  width: 50%;
+  color: white;
+  font-size: 30px;
+  border-radius: 8px;
+}
+
+
+.selected-seats {
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  max-width: 80%; 
+  text-align: center; 
+}
+
+.selected-seats h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.selected-seats strong {
+  display: inline-block; 
+  margin: 5px;
+  padding: 8px 12px; 
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffffff; 
+  background-color: rgb(81, 187, 152); 
+  border-radius: 10px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease-in-out;
+}
+
+.seat-btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #6c7ae0; /* 기본 블루-그레이 */
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.seat-btn:hover {
+  background-color: #5a68d8; /* 호버 시 어두운 블루-그레이 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px); /* 약간 올라오는 효과 */
+}
+
+.seat-btn:active {
+  background-color: #4a57bf; /* 클릭 시 더 짙은 블루 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px); /* 클릭 시 내려가는 효과 */
+}
+
+.seat-btn:disabled {
+  background-color: #c7cbe9; /* 비활성화 상태: 연한 블루-그레이 */
+  color: #8a8a8a;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .screen {
+    height: 40%; 
+    width: 80%; 
+    font-size: 24px;
+  }
+
+  .selected-seats {
+    max-width: 90%; 
+  }
+
+  .seat-btn {
+    padding: 10px 18px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .screen {
+    height: 30%; 
+    width: 100%; 
+    font-size: 18px;
+  }
+
+  .selected-seats h2 {
+    font-size: 1.2em;
+  }
+
+  .selected-seats strong {
+    padding: 6px 10px; 
+    font-size: 0.9em;
+  }
+
+  .seat-btn {
+    padding: 8px 16px;
+    font-size: 0.8em;
+  }
+}

@@ -1,0 +1,54 @@
+.Home{
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #393939 ;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2.5rem;
+  color: #444;
+}
+
+/* 메인 컨테이너 */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 슬라이더 컨테이너 (슬라이더 컴포넌트가 포함될 곳) */
+.slider-container {
+  width: 80%; /* 슬라이더가 화면의 80%를 차지 */
+  max-width: 800px; /* 최대 크기 제한 */
+  margin: 20px auto; /* 화면 중앙 정렬 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 살짝 그림자 효과 */
+  border-radius: 10px; /* 둥근 모서리 */
+  overflow: hidden; /* 자식 요소가 경계 밖으로 나오지 않도록 */
+  background-color: #393939 ;
+}
+
+/* 반응형 스타일 */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .slider-container {
+    width: 90%; /* 더 작은 화면에서 슬라이더가 더 넓게 보이도록 */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .slider-container {
+    width: 100%; /* 작은 화면에서 슬라이더가 전체를 차지하도록 */
+  }
+}

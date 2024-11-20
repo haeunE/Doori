@@ -29,7 +29,7 @@ function Login({ setIsAuth }) {
               .post("/doori/login", user)
               .then((response) => {
                 alert("로그인 성공")
-                const jwt = response.headers.getAuthorization;
+                const jwt = response.headers.authorization;
                 sessionStorage.setItem("username", user.username);
                 if (jwt != null) {
                   sessionStorage.setItem("jwt", jwt);

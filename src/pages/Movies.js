@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./css/Movies.css"
 import Cards from "../components/js/Cards.js";
 import axiosInstance from "../axiosInstance"
+import { useLocation } from "react-router-dom";
 
 function Movies() {
   const [movieList, setMovieList] = useState([])
@@ -25,8 +26,8 @@ if (loading)
 
   // movieList 데이터를 변환하여 Cards에 전달
   const transformedList = movieList.map((movie) => ({
-    link: "doori/movies/"+movie.id,
-    title: movie.title,
+    link: window.location.href+"/"+movie.id,
+    title: movie.title.slice(1),
     img: movie.moviePoster,
     num : "30"+"%",
     some : "예매율",

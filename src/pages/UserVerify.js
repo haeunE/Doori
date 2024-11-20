@@ -19,9 +19,11 @@ function UserVerify() {
         }
 
         axiosInstance
-            .post("/doori/userverify", { password })
+            .post('/doori/checkpassword', null, {
+                params: { password: password }
+            })
             .then((response) => {
-                alert("비밀번호 검증 성공");
+                navigate('/doori/userupdate');
 
                 const jwt = response.headers['Authorization'];
                 
