@@ -68,11 +68,11 @@ function UserUpdate() {
     };
 
     const handleDelete = () => {
-        if (window.confirm("정말 회원 탈퇴를 진행하시겠습니까?")) {
+        if (window.confirm("탈퇴하시겠습니까?")) {
             axiosInstance
                 .post("/doori/userdelete", { username: user.username })
                 .then(() => {
-                    alert("회원 탈퇴 완료");
+                    alert("회원 정보가 삭제되었습니다.");
                     sessionStorage.clear();
                     navigate("/doori");
                 })
