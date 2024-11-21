@@ -71,18 +71,14 @@ function UserUpdate() {
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        // 에러 체크
         if (Object.values(errors).some((error) => error) || !passwordChk) {
             alert("회원 정보를 확인해주세요.");
             return;
         }
-    
-        // 서버에 전달할 데이터 객체 생성
         const data = { newPassword: user.newPassword };
     
-        // PUT 요청으로 비밀번호 변경
         axiosInstance
-            .put("/doori/userupdate", data)  // 데이터를 요청 본문에 포함
+            .put("/doori/userupdate", data) 
             .then(() => {
                 alert("회원 정보 수정 완료");
                 navigate("/doori");
