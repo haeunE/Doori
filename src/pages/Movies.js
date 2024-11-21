@@ -31,7 +31,8 @@ if (loading)
     img: movie.moviePoster,
     num : "30"+"%",
     some : "예매율",
-    icon: "/icons/"+String(movie.ratedYn).substring(0,3)+"_icon.svg"
+    icon: "/icons/"+String(movie.ratedYn).substring(0,3)+"_icon.svg",
+    goto : false
   }));
 
   return (
