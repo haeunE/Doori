@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Movies from './pages/Movies';
 import MovieDetail from './components/js/MovieDetail';
 import UserUpdate from './pages/UserUpdate';
+import UserVerify from './pages/UserVerify';
 import Test from './utils/Test';
 import SeatBooking from './pages/SeatBooking';
 import Reservation from './pages/Reservation';
@@ -36,6 +37,8 @@ function App() {
         <Route path="/doori/movies/:id" element={<MovieDetail />} />
         <Route path='/doori/userupdate' element={<UserUpdate setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/reservation' element={<Reservation setIsAuth={setIsAuth}/>}/>
+        <Route path='/doori/userverify' element={<UserVerify setIsAuth={setIsAuth}/>}/>
+
         {/* 임시 route */}
         <Route path='/doori/seatbooking' element={<SeatBooking/>} />
       </Routes>
