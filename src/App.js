@@ -13,6 +13,8 @@ import UserUpdate from './pages/UserUpdate';
 import UserVerify from './pages/UserVerify';
 import Test from './utils/Test';
 import SeatBooking from './pages/SeatBooking';
+import Introduce from './pages/Introduce';
+
 import Myreservation from './pages/Myreservation';
 import Reservation from './pages/Reservation';
 
@@ -37,6 +39,8 @@ function App() {
         <Route path='/doori/userupdate' element={<UserUpdate setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/reservation' element={<Reservation setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/userverify' element={<UserVerify setIsAuth={setIsAuth}/>}/>
+        <Route path='/doori/introduce' element={<Introduce />} />
+        {/* 임시 route */}
 
         {/* 영화 정보에 대한 route */}
         <Route path='/doori/movies' element={<Movies setIsAuth={setIsAuth}/>}/>
