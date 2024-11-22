@@ -1,3 +1,4 @@
+/* 공통 Cards 스타일 */
 .cards__container {
   display: flex;
   flex-flow: column;
@@ -9,15 +10,16 @@
 
 .cards__wrapper {
   display: flex;
-  flex-wrap: wrap; /* 줄바꿈 허용 */
-  gap: 15px; /* 카드 간 간격 */
-  justify-content: center; /* 카드들을 가운데 정렬 */
+  flex-wrap: wrap; /* 기본: 줄바꿈 허용 */
+  gap: 15px;
+  justify-content: center;
+  padding: 3rem;
 }
 
 .cards__items {
   margin-bottom: 24px;
-  flex-wrap: wrap; /* 자동 줄바꿈 */
-  padding: 0;
+  flex-wrap: wrap;
+  padding-left: 0;
   margin: 0;
 }
 
@@ -26,15 +28,28 @@
     display: flex;
   }
 }
+
 @media only screen and (max-width: 1024px) {
   .cards__wrapper {
-    justify-content: space-around; /* 작은 화면에서는 좌우 정렬 */
+    justify-content: space-around;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .cards__wrapper {
-    justify-content: center; /* 더 작은 화면에서는 가운데 정렬 */
-    gap: 7px; /* 간격 축소 */
+    justify-content: center;
+    gap: 7px;
   }
+}
+
+/* 슬라이드 모드 추가 */
+.cards--no-wrap {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.cards--no-wrap .cards__items {
+  flex: 0 0 auto;
+  padding-left: 20%;
 }

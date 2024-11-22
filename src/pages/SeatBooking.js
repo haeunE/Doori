@@ -7,12 +7,13 @@ import userEvent from "@testing-library/user-event";
 
 const SeatBooking = () => {
 // 앞에서 navigate로 정보 보내는 경우
-//   const clicked = () => {
-//   navigate("/newpage", { state: { value: {timetableId} });
-// };
+  
+
 
   const location = useLocation();
-  const timetableId = location.state.value; // 타임테이블 id
+  const timetableId = parseInt(location.state.value); // 타임테이블 id
+
+  console.log(timetableId)
 
   // const timetableId = 1; // timetable - 임시데이터
 
