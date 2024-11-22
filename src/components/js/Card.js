@@ -4,7 +4,7 @@ import "../css/Card.css"
 
 
 function Card(props) {
-  const [selected, setSelected] = useState(false);
+  // const [selected, setSelected] = useState(false);
 
   const clickHandler = () => {
     if(props.selectNo === props.id) {
@@ -12,15 +12,15 @@ function Card(props) {
       return;
     }
     props.setFilterMovieId(props.id)
-    setSelected(!selected)
+    // setSelected(!selected)
   }
 
   return (
-      <li className={`cards__item ${props.selected ? 'cards--click--ture' : ''}`} onClick={clickHandler}>
+      <li className={`cards__item ${props.selected ? 'cards--click--ture' : ''}`} >
         {/* 세로정렬 */}
         {
           !props.goto && 
-            <Link className='cards__item__link' to={props.link}>
+            <Link className='cards__item__link' to={props.link} >
             
               <figure className='cards__item__pic-wrap'>
                 <img
@@ -40,7 +40,7 @@ function Card(props) {
         {/* 가로정렬 */}
         {
           props.goto && 
-            <div className='cards__item__link'>
+            <div className='cards__item__link' onClick={clickHandler}>
               <figure className='cards__item__pic-wrap'>
                 <img
                 className='cards__item__img'

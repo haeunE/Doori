@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "../css/MovieDetail.css"
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../axiosInstance";
 
 function MovieDetail(){
@@ -8,6 +8,7 @@ function MovieDetail(){
   const { id } = useParams();
   const [loading , setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("summary");
+  const navigate = useNavigate();
 
   useEffect(()=>{
     axiosInstance
@@ -26,11 +27,17 @@ function MovieDetail(){
         console.error("An error occurred:", error);
       }
     });
-}, [id]); // id 의존성 추가
+  }, [id]); // id 의존성 추가
 
-  
+  const nowReservation = ()=>{
+    console.log(movie.id)
+    navigate("/doori/reservation",{state:{value:movie.id}})
+  }
+
+
   if (loading)
     return <div>로딩중</div>
+
 
   return(
     <div className="detail__container">
@@ -53,7 +60,7 @@ function MovieDetail(){
               <li>감독&nbsp;|&nbsp;{movie.director}</li>
               <li>출연&nbsp;|&nbsp;{movie.actor}</li>
             </ul>
-            <button className="detail__items__btn">예매하기</button>
+            <button className="detail__items__btn" onClick={nowReservation}>예매하기</button>
           </div>
         </div>
 

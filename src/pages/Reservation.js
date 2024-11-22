@@ -3,7 +3,7 @@ import Cards from "../components/js/Cards"
 import axiosInstance from "../axiosInstance"
 import WeekDays from "../components/js/WeekDays"
 import SmallCard from "../components/js/SmallCard";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 function Reservation(){
   // 오늘 날짜를 기준으로 일주일 데이터 생성
@@ -40,37 +40,65 @@ function Reservation(){
     }
   );
   const navigate = useNavigate();
+  const location = useLocation();
+  const nowMovieid = location.state?.value || null;
+  
 
+  console.log(nowMovieid)
   useEffect(()=>{
     axiosInstance.get('/doori/reservation')
       .then(response =>{
         setMovieList([...movieList,...response.data])
         setLoading(false)
+        setScreenMovies()
       }).catch(error =>{
         console.log(error)
       })
   },[])
+
+  
   useEffect(()=>{
     axiosInstance.post('/doori/reservation',{ String : selectedDate.fullDate })
       .then(response =>{
 
+        if (nowMovieid){
+          setFilterMovieId(nowMovieid) //2
+        }
+
         // 응답 데이터를 timeTable에 설정
-        setTimeTable(response.data);
+        setTimeTable(response.data);  // timtaneid, time, movieid(...)
 
         // screenMovies를 업데이트
-        const newScreenMovies = response.data.flatMap(dayMovie => dayMovie.movieId);
+        const newScreenMovies = response.data.flatMap(dayMovie => dayMovie.movieId); //movieid(...)
+
+        // console.log(newScreenMovies)
         setScreenMovies(newScreenMovies);
+        console.log("온전한 데이터" )
+        console.log(screenMovies)
+
+        // 필터처리
+        if(filterMovieId){
+          const filterscreen = screenMovies.filter(movie=>movie.id==filterMovieId);
+          console.log(filterscreen)
+          if(!filterscreen){
+            setScreenMovies()
+            console.log("해당 날짜에 없음")
+            return;
+          }
+          console.log("해당 날짜에 있음")
+          setScreenMovies(filterscreen)
+          return;
+        }
 
         console.log("Updated timeTable:", response.data);
         console.log("Updated screenMovies:", newScreenMovies);
+
+        
       }).catch(error =>{
         console.log(error)
         console.log(selectedDate.fullDate)
       })
   },[selectedDate])
-
-
-  const [cardTf , setCardTf] = useState(false)
 
   
   useEffect(() => {
@@ -78,7 +106,6 @@ function Reservation(){
       setScreenMovies(timeTable.flatMap(dayMovie => dayMovie.movieId))
       return;
     }
-
     setScreenMovies(screenMovies.filter(movie=>movie.id==filterMovieId))
   },[filterMovieId])
 
@@ -117,7 +144,7 @@ function Reservation(){
   return(
     <div className="Reservation">
       <Cards list={transformedList} align="no-wrap" setFilterMovieId={setFilterMovieId} filterMovieId={filterMovieId} />
-      <WeekDays weekDays={weekDays} selectedDate={selectedDate} setSelectedDate={setSelectedDate} setFilterMovieId={setFilterMovieId}/>
+      <WeekDays weekDays={weekDays} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       {
         screenMovies.map((movie, j) => {
           return (
