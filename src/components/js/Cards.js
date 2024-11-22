@@ -2,13 +2,13 @@ import { useState } from "react";
 import "../css/Cards.css";
 import Card from "./Card"
 
-function Cards({list}){
+function Cards({list,align, setFilterMovieId, filterMovieId}){
   // const [propsList, setPropslist] = useState([...props])
-  console.log(...list)
+  const wrapperClass = `cards__wrapper ${align === "no-wrap" ? "cards--no-wrap" : ""}`;
   
   return (
     <div className="cards__container">
-      <div className="cards__wrapper">
+      <div className={wrapperClass}>
         <ul className="cards__items">
           {list.map((item, i) => (
             <Card
@@ -19,6 +19,12 @@ function Cards({list}){
               icon= {item.icon}
               num = {item.num}
               some = {item.some}
+              goto = {item.goto}
+              no={i}
+              selected = {filterMovieId === item.id ? true : ''}
+              selectNo={filterMovieId}
+              id = {item.id}
+              setFilterMovieId={setFilterMovieId}
             />
           ))}
         </ul>
