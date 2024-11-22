@@ -13,6 +13,7 @@ import UserUpdate from './pages/UserUpdate';
 import UserVerify from './pages/UserVerify';
 import Test from './utils/Test';
 import SeatBooking from './pages/SeatBooking';
+import Myreservation from './pages/Myreservation';
 import Reservation from './pages/Reservation';
 
 function App() {
@@ -29,18 +30,23 @@ function App() {
       <Header isAuth={isAuth} setIsAuth={setIsAuth} 
       userInfo={userInfo} setUserInfo={setUserInfo}/>
       <Routes>
+        {/* 회원정보에 대한 route */}
         <Route path='/doori' element={<Home />}/>
         <Route path='/doori/signup' element={<Signup />}/>
         <Route path='/doori/login' element={<Login setIsAuth={setIsAuth}/>} />
-        <Route path='/doori/movies' element={<Movies setIsAuth={setIsAuth}/>}/>
-        <Route path='/doori/test' element={<Test setIsAuth={setIsAuth}/>}/>
-        <Route path="/doori/movies/:id" element={<MovieDetail />} />
         <Route path='/doori/userupdate' element={<UserUpdate setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/reservation' element={<Reservation setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/userverify' element={<UserVerify setIsAuth={setIsAuth}/>}/>
 
-        {/* 임시 route */}
+        {/* 영화 정보에 대한 route */}
+        <Route path='/doori/movies' element={<Movies setIsAuth={setIsAuth}/>}/>
+        <Route path="/doori/movies/:id" element={<MovieDetail />} />
+
+        {/* 예약 관한 route */}
         <Route path='/doori/seatbooking' element={<SeatBooking/>} />
+        <Route path='/doori/myreservation' element={<Myreservation />} />
+
+        <Route path='/doori/test' element={<Test setIsAuth={setIsAuth}/>}/>
       </Routes>
       <Footer/>
     </div>

@@ -3,6 +3,7 @@ import Cards from "../components/js/Cards"
 import axiosInstance from "../axiosInstance"
 import WeekDays from "../components/js/WeekDays"
 import SmallCard from "../components/js/SmallCard";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Reservation(){
   // 오늘 날짜를 기준으로 일주일 데이터 생성
@@ -31,6 +32,14 @@ function Reservation(){
   const [screenMovies, setScreenMovies] = useState([]) //상영영화 영화id(영화정보)
   
   const [filterMovieId, setFilterMovieId] = useState();
+  const [selectSmallCard, setSelectSmallCard] = useState(
+    {
+      timeid:null,
+      time:null,
+      title:null
+    }
+  );
+  const navigate = useNavigate();
 
   useEffect(()=>{
     axiosInstance.get('/doori/reservation')
@@ -60,6 +69,7 @@ function Reservation(){
       })
   },[selectedDate])
 
+
   const [cardTf , setCardTf] = useState(false)
 
   
@@ -71,6 +81,22 @@ function Reservation(){
 
     setScreenMovies(screenMovies.filter(movie=>movie.id==filterMovieId))
   },[filterMovieId])
+
+  useEffect(() => {
+    if (selectSmallCard.timeid === null) {
+      return;
+    } else {
+      if (
+        window.confirm(
+          `해당 시간대로 예매하시겠습니까?\n 시간: ${selectSmallCard.time}\n 영화: ${selectSmallCard.title}`
+        )
+      ) {
+        navigate("/doori/seatbooking", { state: { value: selectSmallCard.timeid } });
+      } else {
+        setSelectSmallCard({ timeid: null, time: null, title: null });
+      }
+    }
+  }, [selectSmallCard]);
 
   if (loading)
     return <div>로딩중</div>
@@ -85,16 +111,19 @@ function Reservation(){
     id : movie.id
   }));
 
+  
+    
 
   return(
     <div className="Reservation">
-      <Cards list={transformedList} align="no-wrap" cardTf={cardTf} setFilterMovieId={setFilterMovieId} filterMovieId={filterMovieId} />
+      <Cards list={transformedList} align="no-wrap" setFilterMovieId={setFilterMovieId} filterMovieId={filterMovieId} />
       <WeekDays weekDays={weekDays} selectedDate={selectedDate} setSelectedDate={setSelectedDate} setFilterMovieId={setFilterMovieId}/>
       {
         screenMovies.map((movie, j) => {
           return (
             <>
             <h5 className="screen__time">{timeTable[j].movieDate.substring(11,16)}</h5>
+            {console.log(timeTable[j].id)}
             <SmallCard
               key={j}
               ratedYn={movie.ratedYn}
@@ -121,6 +150,9 @@ function Reservation(){
                   : 0
               }
               remainingSeats={10}
+              timetableId={timeTable[j].id}
+              selectSmallCard={selectSmallCard}
+              setSelectSmallCard={setSelectSmallCard}
             />
             </>
           )
