@@ -15,6 +15,7 @@ import Test from './utils/Test';
 import SeatBooking from './pages/SeatBooking';
 import MyReviews from './pages/MyReviews';
 import Myreservation from './pages/Myreservation';
+import WatchedMovie from './pages/WatchedMovie';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
@@ -40,6 +41,8 @@ function App() {
         <Route path='/doori/userupdate' element={<UserUpdate setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/userverify' element={<UserVerify setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/myreviews' element={<MyReviews setIsAuth={setIsAuth}/>}/>
+        <Route path='/doori/watchedmovie' element={<WatchedMovie setIsAuth={setIsAuth}/>}/>
+
 
 
         {/* 영화 정보에 대한 route */}

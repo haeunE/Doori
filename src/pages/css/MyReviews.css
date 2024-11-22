@@ -23,6 +23,7 @@
   gap: 10px;
   margin-bottom: 20px;
   align-items: center;
+  position: relative;
 }
 
 .review .reviewScore {
@@ -32,15 +33,26 @@
 }
 
 .big-star {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background-color: #ddd;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); /* 별모양 */
   transition: background-color 0.3s;
+  margin-right: 5px;
 }
 
 .big-star.filled {
   background-color: gold;
+}
+
+.big-star .half {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: gold;
+  clip-path: inherit;
 }
 
 button {

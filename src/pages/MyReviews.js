@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import axiosInstance from "../axiosInstance";
 import "./css/MyReviews.css";
+import Myreservation from "./Myreservation";
 
 function MyReviews({ setIsAuth }) {
     const [review, setReview] = useState({ reviewScope: 0, content: "" });
@@ -23,11 +24,11 @@ function MyReviews({ setIsAuth }) {
     }, [setIsAuth]);
 
     useEffect(() => {
-        const movieId = sessionStorage.getItem("movieId");
-        if (movieId) {
-            axiosInstance.get(`/doori/movies/${movieId}`)
+        const movie_id = sessionStorage.getItem("movie_id");
+        if (movie_id) {
+            axiosInstance.get(`/doori/movies/${movie_id}`)
                 .then(response => {
-                    setMovie(response.data); 
+                    setMovie(response.data);
                 })
                 .catch(console.error);
         }
@@ -39,14 +40,14 @@ function MyReviews({ setIsAuth }) {
         e.preventDefault();
 
         const { username } = user;
-        const { id: movieId } = movie || {};
+        const { id: movie_id } = movie || {};
 
-        if (!username || !movieId || !review.content) {
+        if (!username || !movie_id || !review.content) {
             return alert("정보가 부족합니다.");
         }
 
         try {
-            const response = await axiosInstance.post("/doori/myreviews", { ...review, userId: username, movieId });
+            const response = await axiosInstance.post("/doori/myreviews", { ...review, userId: username, movie_id });
             if (response.status === 200) {
                 setSavedReview({ ...review, username: user.username });
                 setReview({ reviewScope: 0, content: "" });
@@ -56,7 +57,7 @@ function MyReviews({ setIsAuth }) {
         } catch (error) {
             console.error("오류 발생:", error);
             alert("오류가 발생했습니다.");
-            
+
         }
     };
 
@@ -66,12 +67,12 @@ function MyReviews({ setIsAuth }) {
         } else if (starDrag.current && starContainerRef.current) {
             const rect = starContainerRef.current.getBoundingClientRect();
             const dragLimit = rect.width * 0.4;
-            const score = Math.min(Math.max((e.clientX - rect.left) / dragLimit * 5, 0), 5);
+            const score = Math.min(Math.max((e.clientX - rect.left) / dragLimit * 10, 0), 5);
             setReview(prev => ({ ...prev, reviewScope: Math.round(score * 2) / 2 }));
         }
     };
-    
-    
+
+
 
     const handleMouseDown = () => {
         starDrag.current = true;
@@ -86,62 +87,61 @@ function MyReviews({ setIsAuth }) {
     };
 
     return (
-        <div className="review">
-            {movie && (
-                <div className="movie-info">
-                    <div className="movie-left">
-                        <img src={movie.moviePoster} alt={movie.title} className="movie-poster" />
-                    </div>
-                    <div className="movie-right">
-                        <h2>{movie.title}</h2>
-                        <p>{movie.director}</p>
-                        <p>{movie.actor}</p>
-                        <p>{movie.plot}</p>
-                        <p>개봉일: {movie.releaseDte}</p>
-                        <p>장르: {movie.genre}</p>
-                    </div>
-                </div>
-            )}
+        <div>
+            <div className="review">
+                <div className="movieCards">
 
-            <div className="userId">
+
+                </div>
+
+                {/* <div className="userId">
                 <p>작성자: {user.username?.slice(0, 3)}***</p>
+            </div> */}
+
+                {savedReview ? (
+                    <div className="saved-review">
+                        <p>평점: {savedReview.reviewScope} / 5</p>
+                        <p>관람평: {savedReview.content}</p>
+                        <button>수정</button>
+                        <button>삭제</button>
+                    </div>
+                ) : (
+                    <>
+
+                        <div
+                            ref={starContainerRef}
+                            className="big-star-wrapper"
+                            onMouseDown={handleMouseDown}
+                            onMouseLeave={handleMouseUp}
+                        >
+                            {[1, 2, 3, 4, 5].map((starIndex) => {
+                                const isHalfFilled = review.reviewScope >= starIndex - 0.5 && review.reviewScope < starIndex;
+                                const isFullFilled = review.reviewScope >= starIndex;
+
+                                return (
+                                    <div
+                                        key={starIndex}
+                                        className={`big-star ${isFullFilled ? 'filled' : ''}`}
+                                        onClick={() => handleStarInteraction(null, starIndex - 1)}
+                                    >
+                                        {isHalfFilled && <div className="half" />}
+                                    </div>
+                                );
+                            })}
+                            <span className="reviewScore">{review.reviewScope.toFixed(1)} / 5</span>
+                        </div>
+
+
+                        <textarea
+                            name="content"
+                            placeholder="내용"
+                            value={review.content}
+                            onChange={handleChange}
+                        />
+                        <button type="submit" onClick={saveReview}>작성완료</button>
+                    </>
+                )}
             </div>
-
-            {savedReview ? (
-                <div className="saved-review">
-                    <p>평점: {savedReview.reviewScope} / 5</p>
-                    <p>관람평: {savedReview.content}</p>
-                    <button>수정</button>
-                    <button>삭제</button>
-                </div>
-            ) : (
-                <>
-                   <div
-    ref={starContainerRef}
-    className="big-star-wrapper"
-    onMouseDown={handleMouseDown}
-    onMouseLeave={handleMouseUp}
->
-    {[1, 2, 3, 4, 5].map(starIndex => (
-        <div
-            key={starIndex}
-            className={`big-star ${review.reviewScope >= starIndex ? 'filled' : ''}`}
-            onClick={() => handleStarInteraction(null, starIndex - 1)}
-        />
-    ))}
-    <span className="reviewScore">{review.reviewScope.toFixed(1)} / 5</span>
-</div>
-
-
-                    <textarea
-                        name="content"
-                        placeholder="내용"
-                        value={review.content}
-                        onChange={handleChange}
-                    />
-                    <button type="submit" onClick={saveReview}>작성완료</button>
-                </>
-            )}
         </div>
     );
 }
