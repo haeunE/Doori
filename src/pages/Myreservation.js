@@ -21,9 +21,8 @@ function Myreservation(){
     return <div>로딩중</div>
 
   return (
-    <div>
-      <div className="movieCard">
-
+    <div className="Myreservation">
+      {/* <div className="movieCard">
         <img
           className="poster"
           src={link} // 포스터 url
@@ -36,7 +35,7 @@ function Myreservation(){
         <p className="date-time">상영일: {date}</p>
         <p className="reservedSeat">좌석 번호: {reservedSeat}</p>
         <p className="price">결제 금액: {price} 원</p>
-      </div>
+      </div> */}
     </div>
   );
 }
