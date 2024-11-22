@@ -20,9 +20,12 @@ function App() {
   const [userInfo, setUserInfo] = useState(); // 유저 정보
 
   useEffect(()=>{
-    if(sessionStorage.getItem('jwt'))
-      setIsAuth(true)
-  },[])
+    if (sessionStorage.getItem('jwt')) {
+      setIsAuth(true); // 로그인 상태
+    } else {
+      setIsAuth(false); // 로그아웃 상태
+    }
+  }, []);
 
   return (
     <div className="App">

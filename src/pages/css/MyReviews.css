@@ -1,0 +1,59 @@
+.review {
+  font-family: "source-han-serif-korean", serif;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.textarea {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.review .big-star-wrapper {
+  display: flex;
+  cursor: pointer;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.review .reviewScore {
+  font-size: 30px;
+  margin-left: auto;
+  text-align: right;
+}
+
+.big-star {
+  width: 40px;
+  height: 40px;
+  background-color: #ddd;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); /* 별모양 */
+  transition: background-color 0.3s;
+}
+
+.big-star.filled {
+  background-color: gold;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #5A5C5C;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #95324c;
+}
