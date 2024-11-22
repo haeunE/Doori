@@ -1,12 +1,12 @@
 .movies {
   padding: 2rem;
-  background: #ffffff;
+  background: #fff;
   box-sizing: border-box;
   font-family: "source-han-serif-korean", serif;
   font-style: light;
 }
 
 h1 {
-  color: #ffffff;
+  color: #363636;
   text-align: center;
 }
