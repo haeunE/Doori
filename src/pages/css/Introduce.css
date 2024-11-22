@@ -1,0 +1,38 @@
+.title {
+  font-weight: bold;
+  font-size: 60px;
+  text-align: center;
+  background-color: #696969;
+  color: #fff;
+}
+
+.text1 {
+  font-weight: lighter;
+  font-size: 17px;
+  text-align: left;
+}
+
+fieldset {
+  width: 1100px;
+  border-radius: 10px;
+  position: relative;
+  left: 400px;
+  margin-top: 60px;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid;
+}
+
+legend {
+  background-color: white;
+  width: 400px;
+  font-size: 27px;
+  font-weight: bold;
+  position: relative;
+  top: -30px;
+}
+
+.subtitle2 {
+  font-size: 23px;
+  position: relative;
+  left: 730px;
+}
