@@ -13,6 +13,9 @@ import UserUpdate from './pages/UserUpdate';
 import UserVerify from './pages/UserVerify';
 import Test from './utils/Test';
 import SeatBooking from './pages/SeatBooking';
+import TimeTable from './pages/TimeTable.js';
+import Introduce from './pages/Introduce';
+
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
@@ -36,7 +39,7 @@ function App() {
         <Route path="/doori/movies/:id" element={<MovieDetail />} />
         <Route path='/doori/userupdate' element={<UserUpdate setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/userverify' element={<UserVerify setIsAuth={setIsAuth}/>}/>
-
+        <Route path='/doori/introduce' element={<Introduce />} />
         {/* 임시 route */}
         <Route path='/doori/seatbooking' element={<SeatBooking/>} />
       </Routes>
