@@ -48,7 +48,7 @@ function App() {
         <Route path="/doori/movies/:id" element={<MovieDetail />} />
 
         {/* 예약 관한 route */}
-        <Route path='/doori/seatbooking' element={<SeatBooking/>} />
+        <Route path='/doori/seatbooking' element={<SeatBooking isAuth={isAuth}/>} />
         <Route path='/doori/myreservation' element={<Myreservation />} />
 
         <Route path='/doori/test' element={<Test setIsAuth={setIsAuth}/>}/>

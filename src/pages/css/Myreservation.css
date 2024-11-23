@@ -1,89 +1,167 @@
 .Myreservation {
-    font-family: "source-han-serif-korean", serif;
-    text-align: left;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f9f9f9;
-    width: 400px;
-    padding: 5% 2%;
-    margin: 0 auto;
+  font-family: "source-han-serif-korean", serif;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  width: 100%;
+  max-width: 600px; /* 최대 크기 제한 */
+  padding: 5% 2%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.Myreservation ul {
+  list-style: none; /* 기본 점 제거 */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.Myreservation li {
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 15px 0;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex; /* 포스터, 영화정보, 버튼이 한 줄로 정렬되도록 설정 */
+  flex-direction: row; /* 가로로 배치 */
+  justify-content: space-between; /* 항목 간에 공간 배분 */
+  align-items: center; /* 세로 중앙 정렬 */
+  width: 100%;
+  position: relative;
+}
+
+.Myreservation .movieCard {
+  display: flex;
+  justify-content: center;
+  margin-right: 20px; /* 포스터와 영화 정보를 구분하는 여백 */
+}
+
+.Myreservation .poster {
+  width: 100%;
+  max-width: 150px; /* 포스터 크기 제한 */
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* 포스터에 그림자 추가 */
+}
+
+.Myreservation .movieInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 300px; /* 영화 정보의 최대 너비 제한 */
+}
+
+.Myreservation .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.Myreservation .date-time {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.Myreservation .reservedSeat {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.Myreservation .noReservationMessage {
+  font-size: 1.2rem;
+  color: #777;
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.Myreservation .link {
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 15px;
+}
+
+.Myreservation .link:hover {
+  text-decoration: underline;
+}
+
+.Myreservation .reviewButton,
+.Myreservation .cancelButton {
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 48%; /* 버튼 크기를 48%로 설정하여 두 버튼이 한 줄에 보이도록 함 */
+}
+
+.Myreservation .reviewButton {
+  background-color: #007bff;
+}
+
+.Myreservation .cancelButton {
+  background-color: #d9534f; /* 빨간색 배경 */
+}
+
+.Myreservation .reviewButton:hover,
+.Myreservation .cancelButton:hover {
+  background-color: #0056b3;
+}
+
+.Myreservation .buttonContainer {
+  display: flex; /* 버튼을 가로로 배치 */
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px; /* 버튼 간 간격을 줌 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  .Myreservation {
+    width: 90%; /* 화면 크기에 따라 너비 조정 */
   }
 
-  .Myreservation .movieCard {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
   .Myreservation .poster {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+    max-width: 120px; /* 작은 화면에서 포스터 크기 줄이기 */
   }
-  
+
   .Myreservation .movieInfo {
-    padding: 15px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin-top: 20px;
+    padding: 8px;
+    max-width: 200px; /* 영화 정보 너비 축소 */
   }
-  
-  .Myreservation .title,
-  .Myreservation .date-time,
-  .Myreservation .reservedSeat,
-  .Myreservation .price {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 10px;
+
+  .Myreservation .buttonContainer {
+    flex-direction: column; /* 버튼들을 세로로 정렬 */
   }
-  
-  .Myreservation .title {
-    font-weight: bold;
+
+  .Myreservation .reviewButton,
+  .Myreservation .cancelButton {
+    width: 100%; /* 세로로 배치되면 버튼이 전체 너비를 차지 */
   }
-  
-  .Myreservation .reservedSeat {
-    color: #5a5c5c;
+}
+
+/* 화면 크기가 600px 이상일 때, 버튼을 가로로 넓히기 */
+@media (min-width: 600px) {
+  .Myreservation .reviewButton,
+  .Myreservation .cancelButton {
+    width: 48%; /* 화면 크기가 커지면 버튼을 48%로 설정해 두 버튼이 가로로 나란히 배치되도록 함 */
   }
-  
-  .Myreservation .price {
-    font-weight: bold;
-    color: #d9534f;
-  }
-  
-  .Myreservation .link {
-    font-size: 0.9rem;
-    color: #007bff;
-    text-decoration: none;
-    margin-top: 15px;
-  }
-  
-  .Myreservation .link:hover {
-    text-decoration: underline;
-  }
-  
-  .Myreservation .socialLogin {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 400px;
-    margin-top: 5%;
-  }
-  
-  .Myreservation .socialLogin div {
-    padding: 10px;
-    background-color: #f0f0f0;
-    color: #555;
-    font-size: 14px;
-    border-radius: 5px;
-    width: 48%;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .Myreservation .socialLogin div:hover {
-    background-color: #ddd;
-  }
-  
+}
