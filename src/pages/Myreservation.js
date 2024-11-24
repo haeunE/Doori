@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
 import './css/Myreservation.css';
 import Review from "../components/js/Review";
+import { data } from "@remix-run/router";
 
 function Myreservation() {
   const [reservationList, setReservationList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [submittedReviews, setSubmittedReviews] = useState({});
+  const [submittedReview, setSubmittedReview] = useState({});
   const ticketPrice = 7000;
-
   const [now, setNow] = useState(new Date()); // 현재 시간 상태 추가
 
   // 현재 시간을 10분마다 업데이트
@@ -50,41 +50,41 @@ function Myreservation() {
   };
 
   const handleReviewClick = (reservationId) => {
-    setSubmittedReviews(prevState => ({ ...prevState, [reservationId]: false }));
+    setSubmittedReview(prevState => ({ ...prevState, [reservationId]: false }));
   };
 
   const handleReviewClose = (reservationId) => {
     // 모달 창을 닫을 때 상태를 undefined로 설정하여 리뷰 쓰기 버튼이 다시 활성화되도록 함
-    setSubmittedReviews(prevState => ({ ...prevState, [reservationId]: undefined }));
+    setSubmittedReview(prevState => ({ ...prevState, [reservationId]: undefined }));
   };
 
   const handleReviewSubmit = (data, reservationId) => {
     axiosInstance.post("/doori/review", data)
       .then(response => {
-        setSubmittedReviews(prevState => ({ ...prevState, [reservationId]: true }));
+        setSubmittedReview(prevState => ({ ...prevState, [reservationId]: true }));
+        console.log(response.data)
       }).catch(error => {
         console.log(error);
       });
   };
 
-  const handleDeleteReservation = (reservationId) => {
+  const handleDeleteReservation = (reservationIds) => {
     // 확인 창 띄우기
     const isConfirmed = window.confirm("정말로 예약을 취소하시겠습니까?");
     if (isConfirmed) {
-      console.log(reservationId);
       axiosInstance.delete(
         "/doori/reservation/delete", {
-          data: reservationId, // Request Body로 예약 ID 배열 전달
+          data: reservationIds, // Request Body로 예약 ID 배열 전달
         })
         .then(response => {
-          console.log(`예약 ${reservationId} 취소됨`);
+          console.log(`예약 ${reservationIds} 취소됨`);
           alert(response.data);
 
           // 예약 취소 후, 예약 목록에서 해당 예약을 제거
-          setReservationList(prevList => prevList.filter(reservation => reservation.reservationId !== reservationId));
+          setReservationList(prevList => prevList.filter(reservation => reservation.reservationId !== reservationIds));
         })
         .catch(error => {
-          console.log(`예약 ${reservationId} 취소 중 오류 발생: `, error);
+          console.log(`예약 ${reservationIds} 취소 중 오류 발생: `, error);
         });
     } else {
       console.log("예약 취소가 취소되었습니다.");
@@ -120,7 +120,7 @@ function Myreservation() {
                     }>예약 취소</button>
                   ) : (
                     <div className="review_btn">
-                      {!submittedReviews[reservation.reservationId] && (
+                      {!submittedReview[reservation.reservationId] && (
                         <button
                           className="reviewButton"
                           onClick={() => handleReviewClick(reservation.reservationId)}
@@ -128,7 +128,7 @@ function Myreservation() {
                           리뷰 쓰기
                         </button>
                       )}
-                      {submittedReviews[reservation.reservationId] === false && (
+                      {submittedReview[reservation.reservationId] === false && (
                         <div className="reviewModal">
                           <Review
                             movieId={reservation.movieId}
