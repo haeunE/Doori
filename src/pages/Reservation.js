@@ -28,7 +28,7 @@ function Reservation(){
   const [loading , setLoading] = useState(true) // 로딩 상태
   const [selectedDate, setSelectedDate] = useState(weekDays[0]); // Default: 오늘
 
-  const [timeTable,setTimeTable]= useState([]) //시간표 시간표id 월,시간 영화id(영화정보)
+  const [screenTimeTable,setScreenTimeTable]= useState([]) //시간표 시간표id 월,시간 영화id(영화정보)
   const [screenMovies, setScreenMovies] = useState([]) //상영영화 영화id(영화정보)
   
   const [filterMovieId, setFilterMovieId] = useState();
@@ -64,13 +64,13 @@ function Reservation(){
         if (nowMovieid){
           setFilterMovieId(nowMovieid) //2
         }
-
+        console.log(response.data)
         // 응답 데이터를 timeTable에 설정
-        setTimeTable(response.data);  // timtaneid, time, movieid(...)
-
+        setScreenTimeTable(response.data);  // timtaneid, time, movieid(...)
+        console.log(screenTimeTable)
         // screenMovies를 업데이트
         const newScreenMovies = response.data.flatMap(dayMovie => dayMovie.movieId); //movieid(...)
-
+        console.log(newScreenMovies)
         // console.log(newScreenMovies)
         setScreenMovies(newScreenMovies);
         console.log("온전한 데이터" )
@@ -102,11 +102,15 @@ function Reservation(){
 
   
   useEffect(() => {
+    console.log(filterMovieId)
     if(!filterMovieId) {
-      setScreenMovies(timeTable.flatMap(dayMovie => dayMovie.movieId))
+      setScreenMovies(screenTimeTable.flatMap(dayMovie => dayMovie.movieId))
+      console.log("1:"+{screenMovies})
       return;
     }
     setScreenMovies(screenMovies.filter(movie=>movie.id==filterMovieId))
+    console.log("2:"+{screenMovies})
+
   },[filterMovieId])
 
   useEffect(() => {
@@ -149,21 +153,21 @@ function Reservation(){
         screenMovies.map((movie, j) => {
           return (
             <>
-            <h5 className="screen__time">{timeTable[j].movieDate.substring(11,16)}</h5>
-            {console.log(timeTable[j].id)}
+            <h5 className="screen__time">{screenTimeTable[j].movieDate.substring(11,16)}</h5>
+            {console.log(screenTimeTable[j].id)}
             <SmallCard
               key={j}
               ratedYn={movie.ratedYn}
               title={movie.title}
               start_h={
-                timeTable[j]?.movieDate
-                  ? parseInt(timeTable[j].movieDate.substring(11, 13), 10) // 10진수로 변환
+                screenTimeTable[j]?.movieDate
+                  ? parseInt(screenTimeTable[j].movieDate.substring(11, 13), 10) // 10진수로 변환
                   : 0 // 기본값 설정
                 // timeTable[j].movieDate
               }
               start_m={
-                timeTable[j]?.movieDate
-                  ? parseInt(timeTable[j].movieDate.substring(14, 16),10)
+                screenTimeTable[j]?.movieDate
+                  ? parseInt(screenTimeTable[j].movieDate.substring(14, 16),10)
                   : 0
               }
               end_h={
@@ -177,7 +181,7 @@ function Reservation(){
                   : 0
               }
               remainingSeats={10}
-              timetableId={timeTable[j].id}
+              screenTimetableId={screenTimeTable[j].id}
               selectSmallCard={selectSmallCard}
               setSelectSmallCard={setSelectSmallCard}
             />

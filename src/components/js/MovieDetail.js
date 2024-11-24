@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import "../css/MovieDetail.css"
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../axiosInstance";
+import ReadReviews from "./ReadReviews";
 
 function MovieDetail(){
   const [movie, setMovie] = useState([])
@@ -93,7 +94,7 @@ function MovieDetail(){
             {activeTab === "reviews" && (
               <div className="detail__reviews">
                 <h6>관람평</h6>
-                <p>여기에 관람평 내용을 입력하세요.</p>
+                <ReadReviews />
               </div>
             )}
           </div>

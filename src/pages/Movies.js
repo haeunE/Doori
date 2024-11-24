@@ -7,6 +7,9 @@ import { useLocation } from "react-router-dom";
 function Movies() {
   const [movieList, setMovieList] = useState([])
   const [loading , setLoading] = useState(true)
+  const location = useLocation();
+  const search_movie = location.state?.value || null;
+  const [filteredMovies, setFilteredMovies] = useState([]);
   
   useEffect(()=>{
     axiosInstance.get('/doori/movies')
@@ -15,17 +18,28 @@ function Movies() {
         setMovieList([...movieList,...response.data])
         console.log(movieList)
         setLoading(false)
+        console.log(search_movie)
       }).catch(error =>{
         console.log(error)
       })
   },[])
+  useEffect(() => {
+    if (search_movie) {
+      const regex = new RegExp(search_movie, 'i');
+      setFilteredMovies(
+        movieList.filter(movie => regex.test(movie.title.slice(1)))
+      );
+    } else {
+      setFilteredMovies(movieList); // 검색어가 없으면 전체 목록 표시
+    }
+  }, [search_movie, movieList]);
 
   
 if (loading)
   return <div>로딩중</div>
 
   // movieList 데이터를 변환하여 Cards에 전달
-  const transformedList = movieList.map((movie) => ({
+  const transformedList = filteredMovies.map((movie) => ({
     link: window.location.href+"/"+movie.id,
     title: movie.title.slice(1),
     img: movie.moviePoster,
