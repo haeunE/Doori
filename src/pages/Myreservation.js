@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../axiosInstance";
 import './css/Myreservation.css';
 import Review from "../components/js/Review";
-import { data } from "@remix-run/router";
 
 function Myreservation() {
   const [reservationList, setReservationList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [submittedReview, setSubmittedReview] = useState({});
+  const [reviewedTimetableIds, setReviewedTimetableIds] = useState([]); // 이미 리뷰가 작성된 timetableId 리스트
   const ticketPrice = 7000;
   const [now, setNow] = useState(new Date()); // 현재 시간 상태 추가
 
@@ -19,6 +19,7 @@ function Myreservation() {
     return () => clearInterval(timer);
   }, []);
 
+  // 예약 정보를 받아오는 useEffect
   useEffect(() => {
     axiosInstance
       .get("/doori/myreservation")
@@ -36,6 +37,61 @@ function Myreservation() {
       });
   }, []);
 
+  // 이미 작성된 리뷰를 받아오는 useEffect
+  useEffect(() => {
+    axiosInstance
+      .get("/doori/reviews")
+      .then(response => {
+        console.log(response.data)
+        setReviewedTimetableIds([...response.data]); 
+      })
+      .catch(error => {
+        console.log("리뷰 정보 가져오기 실패: ", error);
+      });
+  }, []);
+
+  const isReviewTime = (movieDate, runningTime) => {
+    const showDate = new Date(new Date(movieDate).getTime() + runningTime * 60000);
+    return now > showDate; // 현재 시간이 showDate를 넘었는지 확인
+  };
+
+  const handleReviewClick = (timetableId) => {
+    setSubmittedReview(prevState => ({ ...prevState, [timetableId]: false }));
+  };
+
+  const handleReviewClose = (timetableId) => {
+    setSubmittedReview(prevState => ({ ...prevState, [timetableId]: undefined }));
+  };
+
+  const handleReviewSubmit = (data, timetableId) => {
+    axiosInstance.post("/doori/review", data)
+      .then(response => {
+        setSubmittedReview(prevState => ({ ...prevState, [timetableId]: true }));
+        console.log(response.data);
+      }).catch(error => {
+        console.log(error);
+      });
+  };
+
+  const handleDeleteReservation = (reservationIds) => {
+    const isConfirmed = window.confirm("예약을 취소하시겠습니까?");
+    if (isConfirmed) {
+      axiosInstance.delete(
+        "/doori/reservation/delete", {
+          data: reservationIds,
+        })
+        .then(response => {
+          console.log(`예약 ${reservationIds} 취소됨`);
+          alert(response.data);
+
+          setReservationList(prevList => prevList.filter(reservation => reservation.reservationId !== reservationIds));
+        })
+        .catch(error => {
+          console.log(`예약 ${reservationIds} 취소 중 오류 발생: `, error);
+        });
+    }
+  };
+
   if (loading) {
     return <div>로딩중...</div>;
   }
@@ -43,53 +99,6 @@ function Myreservation() {
   if (reservationList.length === 0) {
     return <div className="noReservationMessage">예약이 없습니다.</div>;
   }
-
-  const isReviewTime = (movieDate, runningTime) => {
-    const showDate = new Date(new Date(movieDate).getTime() + runningTime * 60000);
-    return now > showDate; // 현재 시간이 showDate를 넘었는지 확인
-  };
-
-  const handleReviewClick = (reservationId) => {
-    setSubmittedReview(prevState => ({ ...prevState, [reservationId]: false }));
-  };
-
-  const handleReviewClose = (reservationId) => {
-    // 모달 창을 닫을 때 상태를 undefined로 설정하여 리뷰 쓰기 버튼이 다시 활성화되도록 함
-    setSubmittedReview(prevState => ({ ...prevState, [reservationId]: undefined }));
-  };
-
-  const handleReviewSubmit = (data, reservationId) => {
-    axiosInstance.post("/doori/review", data)
-      .then(response => {
-        setSubmittedReview(prevState => ({ ...prevState, [reservationId]: true }));
-        console.log(response.data)
-      }).catch(error => {
-        console.log(error);
-      });
-  };
-
-  const handleDeleteReservation = (reservationIds) => {
-    // 확인 창 띄우기
-    const isConfirmed = window.confirm("정말로 예약을 취소하시겠습니까?");
-    if (isConfirmed) {
-      axiosInstance.delete(
-        "/doori/reservation/delete", {
-          data: reservationIds, // Request Body로 예약 ID 배열 전달
-        })
-        .then(response => {
-          console.log(`예약 ${reservationIds} 취소됨`);
-          alert(response.data);
-
-          // 예약 취소 후, 예약 목록에서 해당 예약을 제거
-          setReservationList(prevList => prevList.filter(reservation => reservation.reservationId !== reservationIds));
-        })
-        .catch(error => {
-          console.log(`예약 ${reservationIds} 취소 중 오류 발생: `, error);
-        });
-    } else {
-      console.log("예약 취소가 취소되었습니다.");
-    }
-  };
 
   return (
     <div className="Myreservation">
@@ -115,25 +124,31 @@ function Myreservation() {
 
                 <div className="buttonContainer">
                   {!isReviewTime(reservation.movieDate, reservation.runningtime) ? (
-                    <button className="cancelButton" onClick={
-                      () => handleDeleteReservation(reservation.reservationId)
-                    }>예약 취소</button>
+                    <button className="cancelButton" onClick={ () => handleDeleteReservation(reservation.reservationId) }>
+                      예약 취소
+                    </button>
                   ) : (
                     <div className="review_btn">
-                      {!submittedReview[reservation.reservationId] && (
+                      {/* 리뷰가 이미 작성된 경우 버튼을 비활성화 */}
+                      {reviewedTimetableIds.includes(reservation.timetableId) ? (
+                        <p className="reviewCompletedMessage">리뷰 작성 완료</p>
+                      ) : (
                         <button
                           className="reviewButton"
-                          onClick={() => handleReviewClick(reservation.reservationId)}
+                          onClick={() => handleReviewClick(reservation.timetableId)}
                         >
                           리뷰 쓰기
                         </button>
                       )}
-                      {submittedReview[reservation.reservationId] === false && (
+
+                      {/* 리뷰 모달창 표시 */}
+                      {submittedReview[reservation.timetableId] === false && (
                         <div className="reviewModal">
                           <Review
                             movieId={reservation.movieId}
-                            onSubmit={(data) => handleReviewSubmit(data, reservation.reservationId)}
-                            onClose={() => handleReviewClose(reservation.reservationId)} // 닫기 처리
+                            timetableId={reservation.timetableId}
+                            onSubmit={(data) => handleReviewSubmit(data, reservation.timetableId)}
+                            onClose={() => handleReviewClose(reservation.timetableId)} // 닫기 처리
                             color="white"
                           />
                         </div>
