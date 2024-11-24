@@ -5,15 +5,13 @@ import SeatRow from "../components/js/SeatRow";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
-const SeatBooking = () => {
+const SeatBooking = ({isAuth}) => {
 // 앞에서 navigate로 정보 보내는 경우
   
 
 
   const location = useLocation();
   const timetableId = parseInt(location.state.value); // 타임테이블 id
-
-  console.log(timetableId)
 
   // const timetableId = 1; // timetable - 임시데이터
 
@@ -91,6 +89,7 @@ const SeatBooking = () => {
          onClick={()=>{
           const isConfirmed = window.confirm("예매하시겠습니까?")
           if(isConfirmed){
+            if(isAuth){
             setLoading(true);
             console.log(data)// 확인용
             axiosInstance.post("/doori/booking", data)
@@ -103,6 +102,10 @@ const SeatBooking = () => {
               alert("예매에 실패했습니다. 다시 시도해 주세요");
             })
             .finally(()=> setLoading(false));
+            }else{
+              alert("예매 시 로그인 필요합니다.")
+              navigate("/doori/login") // 로그인하면 예약정보들 다 날라감 어쩌죠..?
+            }
           }else{
             alert("예매 취소 되었습니다.")
             navigate("/doori")

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -6,7 +6,6 @@ import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 
 function Header({ isAuth, setIsAuth, setUserInfo }) {
   const [search, setSearch] = useState(""); // 검색어 저장 state
-
 
   function changeSearchHandler(e) {
     setSearch(e.target.value);
@@ -20,7 +19,7 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
   function logout() {
     sessionStorage.removeItem('jwt');
     setIsAuth(false);
-    setUserInfo()
+    setUserInfo();
   }
 
   return (
@@ -40,16 +39,20 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
                 </Offcanvas.Title>
               </Offcanvas.Header>
 
-              {/* 메뉴 제목 아래에 줄 추가 */}
               <hr className="menu-divider" />
 
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3 navList">
                   <strong>
-                  <Nav.Link href="/doori/movies">무-비</Nav.Link>
-                  <Nav.Link href="/doori/reservation">예매</Nav.Link>
-                  <Nav.Link href="/doori/myreservation">예매 내역</Nav.Link>
-                  <Nav.Link href="/doori/myreviews">관람평</Nav.Link>
+                    {/* 조건부 렌더링: isAuth가 true일 경우 전체 메뉴 표시, 아니면 일부 메뉴만 표시 */}
+                    <Nav.Link href="/doori/movies">무-비</Nav.Link>
+                    <Nav.Link href="/doori/reservation">예매</Nav.Link>
+                    {isAuth && (
+                      <>
+                        <Nav.Link href="/doori/myreservation">예매 내역</Nav.Link>
+                        <Nav.Link href="/doori/myreviews">관람평</Nav.Link>
+                      </>
+                    )}
                   <Nav.Link href="/doori/introduce">소개페이지</Nav.Link>
                   </strong>
                 </Nav>
@@ -84,7 +87,6 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
             onChange={changeSearchHandler}
           />
           <button className="search" onClick={handleSearchClick}>
-            {/* SVG 아이콘 추가 */}
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
             </svg>
