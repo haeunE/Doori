@@ -13,6 +13,7 @@ function Myreservation() {
     axiosInstance
       .get("/doori/myreservation")
       .then(response => {
+        console.log(response.data);
         const sortedReservations = response.data.sort((a, b) => {
           return new Date(b.movieDate) - new Date(a.movieDate);
         });
@@ -51,12 +52,35 @@ function Myreservation() {
 
   const handleReviewSubmit = (data, reservationId) => {
     axiosInstance.post("/doori/review", data)
-     console.log(data)
       .then(response => {
         setSubmittedReviews(prevState => ({ ...prevState, [reservationId]: true }));
       }).catch(error => {
         console.log(error);
       });
+  };
+
+  const handleDeleteReservation = (reservationId) => {
+    // 확인 창 띄우기
+    const isConfirmed = window.confirm("정말로 예약을 취소하시겠습니까?");
+    if (isConfirmed) {
+      console.log(reservationId);
+      axiosInstance.delete(
+        "/doori/reservation/delete", {
+          data: reservationId, // Request Body로 예약 ID 배열 전달
+        })
+        .then(response => {
+          console.log(`예약 ${reservationId} 취소됨`);
+          alert(response.data);
+
+          // 예약 취소 후, 예약 목록에서 해당 예약을 제거
+          setReservationList(prevList => prevList.filter(reservation => reservation.reservationId !== reservationId));
+        })
+        .catch(error => {
+          console.log(`예약 ${reservationId} 취소 중 오류 발생: `, error);
+        });
+    } else {
+      console.log("예약 취소가 취소되었습니다.");
+    }
   };
 
   return (
@@ -83,7 +107,9 @@ function Myreservation() {
 
                 <div className="buttonContainer">
                   {!isReviewTime(reservation.movieDate) ? (
-                    <button className="cancelButton">예약 취소</button>
+                    <button className="cancelButton" onClick={
+                      () => handleDeleteReservation(reservation.reservationId)
+                    }>예약 취소</button>
                   ) : (
                     <div className="review_btn">
                       {!submittedReviews[reservation.reservationId] && (

@@ -52,8 +52,7 @@ function App() {
         <Route path='/doori/myreservation' element={<Myreservation />} />
 
         {/* 리뷰에 대한 route */}
-        <Route path='/doori/myreviews' element={<MyReviews setIsAuth={setIsAuth}/>}/>
-        <Route path='/doori/review' element={<Review />} />
+        <Route path='/doori/myreviews' element={<MyReviews />}/>
         <Route path='/doori/test' element={<Test setIsAuth={setIsAuth}/>}/>
       </Routes>
       <Footer/>
