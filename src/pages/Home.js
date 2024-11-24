@@ -2,6 +2,7 @@ import { useState } from "react"
 import Banner from "../components/js/Banner"
 import "./css/Home.css"
 
+
 function Home(){
 
   const [eventImg,setEventimg] = useState([

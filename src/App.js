@@ -13,19 +13,24 @@ import UserUpdate from './pages/UserUpdate';
 import UserVerify from './pages/UserVerify';
 import Test from './utils/Test';
 import SeatBooking from './pages/SeatBooking';
+import MyReviews from './pages/MyReviews';
 import Introduce from './pages/Introduce';
 
 import Myreservation from './pages/Myreservation';
 import Reservation from './pages/Reservation';
+import Review from './components/js/Review';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); // 유저 로그인 상태
   const [userInfo, setUserInfo] = useState(); // 유저 정보
 
   useEffect(()=>{
-    if(sessionStorage.getItem('jwt'))
-      setIsAuth(true)
-  },[])
+    if (sessionStorage.getItem('jwt')) {
+      setIsAuth(true); // 로그인 상태
+    } else {
+      setIsAuth(false); // 로그아웃 상태
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -47,9 +52,11 @@ function App() {
         <Route path="/doori/movies/:id" element={<MovieDetail />} />
 
         {/* 예약 관한 route */}
-        <Route path='/doori/seatbooking' element={<SeatBooking/>} />
+        <Route path='/doori/seatbooking' element={<SeatBooking isAuth={isAuth}/>} />
         <Route path='/doori/myreservation' element={<Myreservation />} />
 
+        {/* 리뷰에 대한 route */}
+        <Route path='/doori/myreviews' element={<MyReviews />}/>
         <Route path='/doori/test' element={<Test setIsAuth={setIsAuth}/>}/>
       </Routes>
       <Footer/>
