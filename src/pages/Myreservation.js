@@ -9,6 +9,16 @@ function Myreservation() {
   const [submittedReviews, setSubmittedReviews] = useState({});
   const ticketPrice = 7000;
 
+  const [now, setNow] = useState(new Date()); // 현재 시간 상태 추가
+
+  // 현재 시간을 10분마다 업데이트
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(new Date());
+    }, 600000); // 10분마다 업데이트
+    return () => clearInterval(timer);
+  }, []);
+
   useEffect(() => {
     axiosInstance
       .get("/doori/myreservation")
@@ -34,12 +44,9 @@ function Myreservation() {
     return <div className="noReservationMessage">예약이 없습니다.</div>;
   }
 
-  const isReviewTime = (movieDate) => {
-    const now = new Date();
-    const showDate = new Date(movieDate);
-    const diffInTime = now - showDate;
-    const diffInDays = diffInTime / (1000 * 3600 * 24);
-    return diffInDays >= 1;
+  const isReviewTime = (movieDate, runningTime) => {
+    const showDate = new Date(new Date(movieDate).getTime() + runningTime * 60000);
+    return now > showDate; // 현재 시간이 showDate를 넘었는지 확인
   };
 
   const handleReviewClick = (reservationId) => {
@@ -47,7 +54,8 @@ function Myreservation() {
   };
 
   const handleReviewClose = (reservationId) => {
-    setSubmittedReviews(prevState => ({ ...prevState, [reservationId]: true }));
+    // 모달 창을 닫을 때 상태를 undefined로 설정하여 리뷰 쓰기 버튼이 다시 활성화되도록 함
+    setSubmittedReviews(prevState => ({ ...prevState, [reservationId]: undefined }));
   };
 
   const handleReviewSubmit = (data, reservationId) => {
@@ -106,7 +114,7 @@ function Myreservation() {
                 <p className="price">결제 금액: {totalPrice.toLocaleString()} 원</p>
 
                 <div className="buttonContainer">
-                  {!isReviewTime(reservation.movieDate) ? (
+                  {!isReviewTime(reservation.movieDate, reservation.runningtime) ? (
                     <button className="cancelButton" onClick={
                       () => handleDeleteReservation(reservation.reservationId)
                     }>예약 취소</button>
@@ -125,7 +133,7 @@ function Myreservation() {
                           <Review
                             movieId={reservation.movieId}
                             onSubmit={(data) => handleReviewSubmit(data, reservation.reservationId)}
-                            onClose={() => handleReviewClose(reservation.reservationId)}
+                            onClose={() => handleReviewClose(reservation.reservationId)} // 닫기 처리
                             color="white"
                           />
                         </div>
