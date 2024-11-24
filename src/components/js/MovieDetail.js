@@ -94,7 +94,7 @@ function MovieDetail(){
             {activeTab === "reviews" && (
               <div className="detail__reviews">
                 <h6>관람평</h6>
-                <ReadReviews />
+                <ReadReviews where={`movies/${movie.id}`}/>
               </div>
             )}
           </div>

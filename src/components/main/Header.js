@@ -56,7 +56,6 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
                         <Nav.Link href="/doori/myreviews">관람평</Nav.Link>
                       </>
                     )}
-                  <Nav.Link href="/doori/introduce">소개페이지</Nav.Link>
                   </strong>
                 </Nav>
               </Offcanvas.Body>
