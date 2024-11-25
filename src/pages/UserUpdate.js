@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
 import "./css/Signup.css";
 
-function UserUpdate() {
+function UserUpdate({ setIsAuth }) {
     const [user, setUser] = useState({
         username: sessionStorage.getItem("username") || "",
         name: "",
@@ -18,7 +18,7 @@ function UserUpdate() {
 
     useEffect(() => {
         axiosInstance
-            .get("/doori/userupdate") 
+            .get("/doori/userupdate")
             .then((response) => {
                 setUser(response.data)
                 console.log(user)
@@ -70,19 +70,16 @@ function UserUpdate() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        // 에러 체크
+
         if (Object.values(errors).some((error) => error) || !passwordChk) {
             alert("회원 정보를 확인해주세요.");
             return;
         }
-    
-        // 서버에 전달할 데이터 객체 생성
+
         const data = { newPassword: user.newPassword };
-    
-        // PUT 요청으로 비밀번호 변경
+
         axiosInstance
-            .put("/doori/userupdate", data)  // 데이터를 요청 본문에 포함
+            .put("/doori/userupdate", data)
             .then(() => {
                 alert("회원 정보 수정 완료");
                 navigate("/doori");
@@ -92,7 +89,6 @@ function UserUpdate() {
                 alert("회원 정보 수정 실패");
             });
     };
-    
 
     const handleDelete = () => {
         if (window.confirm("탈퇴하시겠습니까?")) {
@@ -101,7 +97,8 @@ function UserUpdate() {
                 .then(() => {
                     alert("회원 정보가 삭제되었습니다.");
                     sessionStorage.clear();
-                    navigate("/doori");
+                    setIsAuth(false);
+                    window.location.reload();   // 탈퇴 후 로그아웃 상태의 홈 이동
                 })
                 .catch((error) => {
                     console.error("회원 탈퇴 실패:", error);
@@ -121,27 +118,15 @@ function UserUpdate() {
 
                     <label>
                         새 비밀번호:
-                        <input
-                            type="password"
-                            name="newPassword"
-                            value={user.newPassword}
-                            onChange={handleChange}
-                        />
+                        <input type="password" name="newPassword" value={user.newPassword} onChange={handleChange} />
                     </label>
-                    {errors.newPasswordError && <div style={{ color: "red" }}>{errors.newPasswordError}</div>}
+                    {errors.newPasswordError && errors.newPasswordError}
 
-                    <label>
-                        새 비밀번호 확인:
-                        <input
-                            type="password"
-                            name="passwordCheck"
-                            value={user.passwordCheck}
-                            onChange={handleChange}
-                        />
+                    <label>새 비밀번호 확인:
+                        <input type="password" name="passwordCheck" value={user.passwordCheck} onChange={handleChange} />
                     </label>
-                    {!passwordChk && user.passwordCheck && (
-                        <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
-                    )}
+                    {!passwordChk && user.passwordCheck && '비밀번호가 일치하지 않습니다.'}
+
 
                     <button type="submit">수정 완료</button>
                     <button type="button" onClick={handleDelete}>

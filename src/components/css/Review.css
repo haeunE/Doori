@@ -1,0 +1,145 @@
+.movieReview{
+  width: 100%;
+  font-family: "source-han-serif-korean", serif;
+}
+
+
+.rating {
+  display: flex; /* 별 컨테이너를 가로로 배치 */
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.big-star-wrapper {
+  display: flex; /* 별들을 가로로 배치 */
+  flex-wrap: nowrap; /* 줄 바꿈 방지 */
+  justify-content: center;
+  gap: 8px; /* 별 사이 간격 */
+  width: 100%; /* 컨테이너 크기 */
+}
+
+.big-star {
+  width: 40px;
+  height: 40px;
+  background-color: #ddd;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  transition: background-color 0.3s;
+}
+
+.big-star.filled {
+  background-color: gold;
+}
+
+.reviewScore {
+  margin-left: 20px; /* 별점 숫자와 별 사이 간격 */
+  font-size: 24px;
+}
+
+
+.big-star .half {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: gold;
+  clip-path: inherit;
+}
+
+.big-star:hover {
+  transform: scale(1.1);
+  background-color: #ffd700;
+}
+
+.review .reviewScore {
+  font-size: 30px;
+  margin-left: 20px;
+  text-align: right;
+}
+
+.reviewTextArea {
+  width: 70%;
+  height: 150px; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* 둥근 모서리 */
+  font-size: 14px;
+  resize: both; /* 가로, 세로 크기 조정 가능 */
+  box-sizing: border-box;
+  background-color: #f9f9f9; /* 부드러운 배경 색상 */
+  transition: background-color 0.3s ease; /* 배경 색상 부드럽게 전환 */
+}
+
+/* textarea 선택 시 테두리 브라운 색상 추가 */
+.reviewTextArea:focus {
+  outline: none; /* 기본 테두리 제거 */
+  border-color: brown; /* 포커스 시 테두리 색상 브라운으로 변경 */
+}
+
+.reviewButton {
+  padding: 10px 20px; /* 더 여유로운 패딩 */
+  background: linear-gradient(135deg, brown, #8b4513); /* 그라디언트 배경으로 브라운 톤 적용 */
+  color: white;
+  border: none;
+  border-radius: 50px; /* 둥근 모서리 */
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* 전환 효과 추가 */
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.4); /* 입체감 추가 */
+}
+
+.reviewButton:hover {
+  background: linear-gradient(135deg, #8b4513, #5f4037); /* hover 시 색상 변화 */
+  transform: translateY(-2px); /* 버튼 살짝 위로 올라가는 효과 */
+  box-shadow: 0 6px 15px rgba(139, 69, 19, 0.5); /* hover 시 그림자 더 진하게 */
+}
+
+.reviewButton:active {
+  transform: scale(0.95); /* 클릭 시 살짝 작아지는 효과 */
+  box-shadow: 0 2px 5px rgba(139, 69, 19, 0.3); /* 클릭 시 그림자 변화 */
+}
+
+.reviewButton:focus {
+  outline: 2px solid #8b4513; /* 포커스 시 테두리 색상 변경 */
+  outline-offset: 2px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.closeButton:hover {
+  color: red;
+}
+
+
+
+@media (max-width: 480px) {
+  .movieReview {
+    padding: 10px;
+  }
+
+  .big-star {
+    width: 30px;
+    height: 30px;
+  }
+
+  .reviewTextArea {
+    font-size: 12px;
+  }
+
+  .reviewButton {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
