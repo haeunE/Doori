@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import '../css/Review.css'; // CSS 파일 직접 import
 
-const Review = ({ movieId, onSubmit,onClose, color }) => {
+const Review = ({ movieId, timetableId, onSubmit,onClose, color }) => {
   const [rating, setRating] = useState(0); // 별점
   const [review, setReview] = useState(''); // 관람평
   const [reviewScope, setReviewScope] = useState(0); // 임시 별점
@@ -38,7 +38,7 @@ const Review = ({ movieId, onSubmit,onClose, color }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (rating > 0 && review) {
-      onSubmit({ movieId, rating, review });
+      onSubmit({ movieId, timetableId, rating, review });
       setRating(0);
       setReview('');
       setReviewScope(0);
