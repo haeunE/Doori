@@ -46,7 +46,7 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  width: 80%;
+  width: 100%;
 }
 
 .cards--no-wrap .cards__items {

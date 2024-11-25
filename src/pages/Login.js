@@ -58,7 +58,6 @@ function Login({ setIsAuth }) {
       </div>
       <div className="socialLogin">
         <Kakao setIsAuth={setIsAuth} />
-        <div>구글</div>
       </div>
     </div>
   );

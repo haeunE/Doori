@@ -1,0 +1,38 @@
+.Week_Movietimetitle {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.Week_simple_text {
+  margin-top: 60px;
+}
+
+.Week_subtitle {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.Week_graphrow {
+  font-size: 20px;
+  
+}
+
+.Week_a {
+  width: 950px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  position: relative;
+  top: 30px;
+  border: 1px solid black;
+  margin: auto;
+}
+
+.Week_a th {
+  border: 1px solid black;
+}
+
+.Week_a td {
+  border: 1px solid black;
+  font-size: 15px;
+}

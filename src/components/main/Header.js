@@ -54,6 +54,7 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
                       <>
                         <Nav.Link href="/doori/myreservation">예매 내역</Nav.Link>
                         <Nav.Link href="/doori/myreviews">관람평</Nav.Link>
+                        <Nav.Link href="/doori/introduce">소개</Nav.Link>
                       </>
                     )}
                   </strong>
@@ -71,7 +72,8 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
         <div className="links-container">
           {isAuth ? (
             <div className="loginlogout">
-              <Link to="/doori/userverify" className="auth-link">내정보  </Link>
+              <Link to="/doori/userverify" className="auth-link">내정보  </Link> 
+              &nbsp;/&nbsp;
               <Link to="/doori/logout" className="auth-link" onClick={logout}>  로그아웃</Link>
             </div>
           ) : (
