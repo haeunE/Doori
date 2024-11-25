@@ -2,13 +2,14 @@ import React from "react";
 import "./Footer.css";
 
 function Footer() {
+
     return (
         <div className="Footer">
-            <>
-                <p>서울특별시 강동구 천호대로 157길 14  (우)05335 email@email.com  대표전화 02-1234-1234<br />
-                    대표이사 김두리, 개인정보보호책임자 김하나, 사업자등록번호 111-22-33333, 통신판매업신고번호 1111-서울강동-1111<br />
-                    COPYRIGHT © Doori Movies, Inc. All rights reserved</p>
-            </>
+            <body />
+            <div className="footer-content"></div>
+            <p>서울특별시 강동구 천호대로 157길 14  (우)05335 email@email.com  대표전화 02-1234-1234<br />
+                대표이사 김두리, 개인정보보호책임자 김하나, 사업자등록번호 111-22-33333, 통신판매업신고번호 1111-서울강동-1111<br />
+                COPYRIGHT © Doori Movies, Inc. All rights reserved</p>
         </div>
     )
 }
