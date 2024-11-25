@@ -1,25 +1,14 @@
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* 화면 전체 높이를 보장 */
-}
 
 .Footer {
-  height: 90px;
-  width: 100%;
-  border-top: 1px solid #ffffff;
   font-family: "source-han-serif-korean", serif;
+  height: 150px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #393939;
-  margin-top: 80px; /* 푸터 상단 여백 유지 */
   margin-bottom: 0; /* 푸터 아래 여백 없앰 */
-  position: absolute; /* relative로 위치 지정 */
-}
-
-.Footer p {
+  margin-top: auto;
   color: #ffffff;
-  font-size: 10px;
-  white-space: nowrap;
+  font-size: 12px;
 }

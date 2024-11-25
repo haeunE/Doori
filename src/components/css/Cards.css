@@ -1,26 +1,20 @@
 /* 공통 Cards 스타일 */
 .cards__container {
-  display: flex;
   flex-flow: column;
-  align-items: center;
-  max-width: 1120px;
-  width: 90%;
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
+  margin-top: 100px;
 }
 
 .cards__wrapper {
   display: flex;
-  flex-wrap: wrap; /* 기본: 줄바꿈 허용 */
-  gap: 15px;
-  justify-content: center;
-  padding: 3rem;
+  gap: 20px;
 }
 
 .cards__items {
-  margin-bottom: 24px;
   flex-wrap: wrap;
-  padding-left: 0;
-  margin: 0;
+  justify-content: center;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -51,5 +45,4 @@
 
 .cards--no-wrap .cards__items {
   flex: 0 0 auto;
-  padding-left: 20%;
 }

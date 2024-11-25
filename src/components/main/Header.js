@@ -28,7 +28,7 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
         <Navbar expand={false} className="bg-body-tertiary mb-3" variant="dark">
           <Container fluid>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-false`} />
-            <Navbar.Offcanvas
+            <Navbar.Offcanvas 
               id={`offcanvasNavbar-expand-false`}
               aria-labelledby={`offcanvasNavbarLabel-expand-false`}
               placement="start"
@@ -68,13 +68,13 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
       <div className="left-section">
         <div className="links-container">
           {isAuth ? (
-            <>
-              <Link to="/doori/userverify" className="auth-link">내정보</Link>
-              <Link to="/doori/logout" className="auth-link" onClick={logout}>로그아웃</Link>
-            </>
+            <div className="loginlogout">
+              <Link to="/doori/userverify" className="auth-link">내정보  </Link>
+              <Link to="/doori/logout" className="auth-link" onClick={logout}>  로그아웃</Link>
+            </div>
           ) : (
             <>
-              <Link to="/doori/login" className="auth-link">로그인</Link>
+              <Link to="/doori/login" className="auth-link">로그인 / 회원가입</Link>
             </>
           )}
         </div>

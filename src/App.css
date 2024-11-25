@@ -1,3 +1,7 @@
 .App {
   text-align: center;
+  font-family: "source-han-serif-korean", serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 92vh; /* 화면의 높이를 100%로 유지 */
 }

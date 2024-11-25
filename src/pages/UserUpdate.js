@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
-import "./css/Signup.css";
+import './css/UserUpdate.css';
 
 function UserUpdate({ setIsAuth }) {
     const [user, setUser] = useState({
@@ -108,7 +108,7 @@ function UserUpdate({ setIsAuth }) {
     };
 
     return (
-        <div className="Signup">
+        <div className="UserUpdate">
             <form onSubmit={handleSubmit}>
                 <div>
                     <p>ID: {user.username}</p>
