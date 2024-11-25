@@ -114,7 +114,7 @@ function Signup() {
         try {
             const responseData = await axiosInstance.post('/doori/signup', member);
             if (responseData.status === 200) {
-                alert('회원가입이 성공했습니다!');
+                alert('회원가입에 성공했습니다!');
                 navigate('/doori');
             } else {
                 alert('회원가입에 실패했습니다. 다시 시도해주세요.');

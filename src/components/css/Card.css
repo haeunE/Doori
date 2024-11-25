@@ -4,11 +4,10 @@
   margin: 0 16px 32px; /* 카드 간격 */
   border-radius: 10px;
   height: 250px;
-  
+  position: relative;
 }
 
 .cards__item__link {
-  display: flex;
   flex-direction: column; /* 세로로 배치 */
   flex-flow: column;
   border-style:solid;
@@ -26,10 +25,9 @@
 
 .cards__item__pic-wrap {
   position: relative;
-  /* width: 100%; */
   height: 75%;
   overflow: hidden;
-  display: flex; /* flexbox 사용 */
+  display: flexbox; /* flexbox 사용 */
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
 }
@@ -42,20 +40,6 @@
   animation-duration: 2s;
 }
 
-/* .cards__item__pic-wrap::after {
-  content: attr(data-category);
-  position: absolute;
-  bottom: 0;
-  margin-left: 10px;
-  padding: 6px 8px;
-  max-width: calc((100%) - 60px);
-  font-size: 12px;
-  font-weight: 700;
-  color: #ffffff ;
-  background-color: #ffffff;
-  box-sizing: border-box;
-} */
-
 .cards__item__img {
   position: absolute;
   top: 0;
@@ -65,7 +49,6 @@
   object-fit: cover; /* 비율 유지하며 부모 영역을 덮음 */
   transition: all 0.2s linear;
 }
-
 
 .cards__item__img:hover {
   transform: scale(1.1);
@@ -77,28 +60,35 @@
   align-items: center; /* 수직 정렬 */
   justify-content: center; /* 수평 정렬 */
   padding: 5px;
-  gap: 0.3rem;
+  height: 80px;
 }
 
 .cards__item__icon {
-  width: 1em; /* 텍스트 크기에 비례한 너비 */
-  height: 1em; /* 텍스트 크기에 비례한 높이 */
+  width: 1.2em; /* 텍스트 크기에 비례한 너비 */
+  height: 1.2em; /* 텍스트 크기에 비례한 높이 */
   fill: currentColor; /* 텍스트 색상과 동일하게 설정 */
   margin-right: 8px; /* 아이콘과 텍스트 간격 */
-  display: inline-block; /* inline-block으로 처리 */
+  justify-content: flex-start;
+  align-items: center;
+  left: 5px;
+  position: absolute; 
 }
 
 .cards__item__text {
   color: #fff;
-  font-size: 18px;
-  line-height: 1.4; /* 텍스트 줄 간격 */
-  
+  font-size: 17px;
+  width: 65%;
+ 
 }
 
+
 .cards__item__some{
-  color: #fff;
-  font-size: 13px;
-  font-style: light;
+  color: #ffb743;
+  font-size: 12px;
+  white-space: nowrap; /* 줄바꿈 방지 */
+  position: absolute; /* 우측 하단 고정을 위해 위치 지정 */
+  bottom: 0; /* 하단 여백 */
+  right: 5px;
 }
 
 .cards--click--ture{
@@ -117,9 +107,9 @@
 }
 
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1400px) {
   .content__blog__container {
-    width: 84%;
+    width: 100%;
   }
 }
 

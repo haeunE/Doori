@@ -1,6 +1,5 @@
 /* 공통 Cards 스타일 */
 .cards__container {
-  display: flex;
   flex-flow: column;
   align-items: center;
  width: 100%; 
@@ -11,17 +10,13 @@
 .cards__wrapper {
   width: 100%;
   display: flex;
-  flex-wrap: wrap; /* 기본: 줄바꿈 허용 */
-  gap: 15px;
-  justify-content: center;
-  padding: 3rem;
+  gap: 20px;
 }
 
 .cards__items {
   margin-bottom: 10px;
   flex-wrap: wrap;
-  padding-left: 0;
-  margin: 0;
+  justify-content: center;
 }
 
 @media only screen and (min-width: 500px) {

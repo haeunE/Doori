@@ -45,7 +45,7 @@ function UserVerify() {
 
     return (
         <div className="UserVerify">
-            <strong>비밀번호: <input type="password" name="password" onChange={onChangeHandler} /></strong>
+            <strong>Password: <input type="password" name="password" onChange={onChangeHandler} /></strong>
             <button onClick={handleVerify}>
                 정보 확인 / 수정
             </button>
