@@ -50,7 +50,6 @@ function Reservation(){
       .then(response =>{
         setMovieList([...movieList,...response.data])
         setLoading(false)
-        setScreenMovies()
       }).catch(error =>{
         console.log(error)
       })
