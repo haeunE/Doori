@@ -1,24 +1,24 @@
-.Movietimetitle {
+.Week_Movietimetitle {
   font-weight: bold;
   font-size: 40px;
 }
 
-.simple_text {
+.Week_simple_text {
   margin-top: 60px;
 }
 
-.subtitle {
+.Week_subtitle {
   font-size: 18px;
   display: flex;
   justify-content: center;
 }
 
-.graphrow {
+.Week_graphrow {
   font-size: 20px;
   
 }
 
-.a {
+.Week_a {
   width: 950px;
   table-layout: fixed;
   border-collapse: collapse;
@@ -28,11 +28,11 @@
   margin: auto;
 }
 
-.a th {
+.Week_a th {
   border: 1px solid black;
 }
 
-.a td {
+.Week_a td {
   border: 1px solid black;
   font-size: 15px;
 }

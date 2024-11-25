@@ -1,14 +1,14 @@
-import './css/TimeTable.css';
+import '../css/WeekTimeTable.css';
 
-function TimeTable () {
+function WeekTimeTable () {
   return(
     <>
-      <div><p className="Movietimetitle">Doori 독립영화관 시간표</p>
-          <th className="subtitle"><p>안녕하세요, Doori 독립영화관 입니다.</p></th> 
+      <div><p className="Week_Movietimetitle">Doori 독립영화관 시간표</p>
+          <th className="Week_subtitle"><p>안녕하세요, Doori 독립영화관 입니다.</p></th> 
       </div>
       
-      <table className="a"> 
-        <tr className="graphrow">
+      <table className="Week_a"> 
+        <tr className="Week_graphrow">
           <th>11월</th>
           <th>월(18)</th>
           <th>화(19)</th>
@@ -59,7 +59,7 @@ function TimeTable () {
           <td colSpan="7">CLOSED<br /></td>
         </tr>
       </table>
-      <ul className="simple_text">
+      <ul className="Week_simple_text">
         <li>대관, 단체관람 가능합니다. 문의주세요</li>
         <li> 요금 성인 7000원 청소년/아동/노인 5000원</li>
       </ul> 
@@ -67,5 +67,5 @@ function TimeTable () {
   );
 }
 
-export default TimeTable;
+export default WeekTimeTable;
 

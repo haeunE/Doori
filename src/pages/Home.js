@@ -1,6 +1,8 @@
 import { useState } from "react"
 import Banner from "../components/js/Banner"
 import "./css/Home.css"
+import WeekTimeTable from "../components/js/WeekTimeTable"
+
 
 function Home(){
 
@@ -12,6 +14,7 @@ function Home(){
   return(
     <div className="Home">
       <Banner images={eventImg}/>
+      <WeekTimeTable />
     </div>
   )
 }

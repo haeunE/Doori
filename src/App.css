@@ -5,3 +5,9 @@
   flex-direction: column;
   min-height: 92vh; /* 화면의 높이를 100%로 유지 */
 }
+@media (max-width: 768px) {
+  .App {
+    max-width: 100%; /* 작은 화면에서는 최대 너비 해제 */
+    padding: 0 10px; /* 작은 화면에서 여백 축소 */
+  }
+}

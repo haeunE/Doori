@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 
 function Header({ isAuth, setIsAuth, setUserInfo }) {
   const [search, setSearch] = useState(""); // 검색어 저장 state
+  const navigate = useNavigate();
 
   function changeSearchHandler(e) {
     setSearch(e.target.value);
   }
 
   function handleSearchClick() {
+    
     console.log("검색어:", search);
+    navigate("/doori/movies", { state: { value: search } })
     // 실제 검색 로직을 여기에 추가 필요
   }
 
@@ -51,9 +54,9 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
                       <>
                         <Nav.Link href="/doori/myreservation">예매 내역</Nav.Link>
                         <Nav.Link href="/doori/myreviews">관람평</Nav.Link>
+                        <Nav.Link href="/doori/introduce">소개</Nav.Link>
                       </>
                     )}
-                  <Nav.Link href="/doori/introduce">소개페이지</Nav.Link>
                   </strong>
                 </Nav>
               </Offcanvas.Body>
@@ -69,7 +72,8 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
         <div className="links-container">
           {isAuth ? (
             <div className="loginlogout">
-              <Link to="/doori/userverify" className="auth-link">내정보  </Link>
+              <Link to="/doori/userverify" className="auth-link">내정보  </Link> 
+              &nbsp;/&nbsp;
               <Link to="/doori/logout" className="auth-link" onClick={logout}>  로그아웃</Link>
             </div>
           ) : (
@@ -81,6 +85,7 @@ function Header({ isAuth, setIsAuth, setUserInfo }) {
 
         <div className="search-wrapper">
           <input
+            id="search__input"
             type="text"
             placeholder="검색어를 입력하세요"
             value={search}

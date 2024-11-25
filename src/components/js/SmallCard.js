@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import '../css/SmallCard.css';
 
-const SmallCard = ({ ratedYn, title, start_h, start_m, end_h, end_m, remainingSeats, timetableId, selectSmallCard, setSelectSmallCard}) => {
+const SmallCard = ({ ratedYn, title, start_h, start_m, end_h, end_m, remainingSeats, screenTimetableId, selectSmallCard, setSelectSmallCard}) => {
   const [end_hour] = useState(start_m + end_m >= 60 ? start_h + end_h + 1 : start_h + end_h)
   const [end_minute] = useState(start_m + end_m >= 60 ? (start_m + end_m) % 60 : start_m + end_m)
 
   const smallCardclickHandler = ()=>{
-    if (selectSmallCard.timeid === timetableId){
+    if (selectSmallCard.timeid === screenTimetableId){
       setSelectSmallCard({ timeid: null, time: null, title: null });
       return;
     }
-    setSelectSmallCard({timeid:`${timetableId}`, time:`${start_h} : ${start_m} ~ ${end_hour} : ${end_minute}`, title:`${title}`})
+    setSelectSmallCard({timeid:`${screenTimetableId}`, time:`${start_h} : ${start_m} ~ ${end_hour} : ${end_minute}`, title:`${title}`})
   }
   return (
     <div className="movie-card" onClick={smallCardclickHandler}>

@@ -1,29 +1,31 @@
 /* 공통 Cards 스타일 */
 .cards__container {
   flex-flow: column;
-  max-width: 1400px;
-  width: 100%;
+  align-items: center;
+ width: 100%; 
   margin: 0 auto;
-  margin-top: 100px;
+  padding: auto;
 }
 
 .cards__wrapper {
+  width: 100%;
   display: flex;
   gap: 20px;
 }
 
 .cards__items {
+  margin-bottom: 10px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 500px) {
   .cards__items {
     display: flex;
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 500px) {
   .cards__wrapper {
     justify-content: space-around;
   }
@@ -38,11 +40,16 @@
 
 /* 슬라이드 모드 추가 */
 .cards--no-wrap {
+  margin-left: 0; /* 기본 값으로 초기화 */
+  padding-left: 0; /* 기본 값으로 초기화 */
+  justify-content: flex-start;
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  width: 100%;
 }
 
 .cards--no-wrap .cards__items {
   flex: 0 0 auto;
+  padding-left: 5%;
 }
