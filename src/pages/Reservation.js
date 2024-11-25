@@ -28,7 +28,7 @@ function Reservation(){
   const [loading , setLoading] = useState(true) // 로딩 상태
   const [selectedDate, setSelectedDate] = useState(weekDays[0]); // Default: 오늘
 
-  const [timeTable,setTimeTable]= useState([]) //시간표 시간표id 월,시간 영화id(영화정보)
+  const [screenTimetable,setScreenTimetable]= useState([]) //시간표 시간표id 월,시간 영화id(영화정보)
   const [screenMovies, setScreenMovies] = useState([]) //상영영화 영화id(영화정보)
   
   const [filterMovieId, setFilterMovieId] = useState();
@@ -39,74 +39,87 @@ function Reservation(){
       title:null
     }
   );
+  
   const navigate = useNavigate();
   const location = useLocation();
   const nowMovieid = location.state?.value || null;
-  
 
-  console.log(nowMovieid)
+  const [filterScreen,setFilterScreen] = useState([])
+  
+  // const findByMovies = ()=>{
+    
+  // }
+  
+  
   useEffect(()=>{
+    console.log(nowMovieid)
     axiosInstance.get('/doori/reservation')
       .then(response =>{
         setMovieList([...movieList,...response.data])
         setLoading(false)
+
+        if (nowMovieid){
+          setFilterMovieId(nowMovieid) //2
+        }      
       }).catch(error =>{
         console.log(error)
       })
   },[])
 
   
-  useEffect(()=>{
-    axiosInstance.post('/doori/reservation',{ String : selectedDate.fullDate })
-      .then(response =>{
+  useEffect(() => {
+    // filterScreen 초기화
+    setFilterScreen(null);
 
-        if (nowMovieid){
-          setFilterMovieId(nowMovieid) //2
-        }
+    axiosInstance.post('/doori/reservation', { String: selectedDate.fullDate })
+      .then(response => {
+        console.log(response.data);
 
-        // 응답 데이터를 timeTable에 설정
-        setTimeTable(response.data);  // timtaneid, time, movieid(...)
+        // 응답 데이터를 screenTimetable에 설정
+        setScreenTimetable(response.data);
 
         // screenMovies를 업데이트
-        const newScreenMovies = response.data.flatMap(dayMovie => dayMovie.movieId); //movieid(...)
-
-        // console.log(newScreenMovies)
-        setScreenMovies(newScreenMovies);
-        console.log("온전한 데이터" )
-        console.log(screenMovies)
+        const newScreenMovies = response.data.flatMap(dayMovie => dayMovie.movieId); 
+        console.log(newScreenMovies);
+        setScreenMovies([...newScreenMovies]);
 
         // 필터처리
-        if(filterMovieId){
-          const filterscreen = screenMovies.filter(movie=>movie.id==filterMovieId);
-          console.log(filterscreen)
-          if(!filterscreen){
-            setScreenMovies()
-            console.log("해당 날짜에 없음")
-            return;
+        if (filterMovieId) {
+          console.log("filterMovieId 확인:", filterMovieId);
+
+          const filterScreen = newScreenMovies.filter(movie => movie.id === filterMovieId);
+          console.log(filterScreen);
+
+          if (filterScreen.length === 0) {
+            console.log("해당 날짜에 없음");
+            setScreenMovies([]); // 빈 배열로 초기화
+          } else {
+            console.log("해당 날짜에 있음");
+            setScreenMovies(filterScreen);
           }
-          console.log("해당 날짜에 있음")
-          setScreenMovies(filterscreen)
-          return;
         }
 
-        console.log("Updated timeTable:", response.data);
+        console.log("Updated screenTimetable:", response.data);
         console.log("Updated screenMovies:", newScreenMovies);
 
-        
-      }).catch(error =>{
-        console.log(error)
-        console.log(selectedDate.fullDate)
-      })
-  },[selectedDate])
+      }).catch(error => {
+        console.log(error);
+        console.log(selectedDate.fullDate);
+      });
+}, [selectedDate, filterMovieId]); // filterMovieId를 의존성에 추가
 
   
-  useEffect(() => {
-    if(!filterMovieId) {
-      setScreenMovies(timeTable.flatMap(dayMovie => dayMovie.movieId))
-      return;
-    }
-    setScreenMovies(screenMovies.filter(movie=>movie.id==filterMovieId))
-  },[filterMovieId])
+  // useEffect(() => {
+  //   console.log(filterMovieId)
+  //   if(!filterMovieId) {
+  //     setScreenMovies(screenTimetable.flatMap(dayMovie => dayMovie.movieId))
+  //     console.log("3"+{screenMovies})
+  //     return;
+  //   }
+  //   setScreenMovies(screenMovies.filter(movie=>movie.id==filterMovieId))
+  //   console.log("2:"+{screenMovies})
+
+  // },[filterMovieId])
 
   useEffect(() => {
     if (selectSmallCard.timeid === null) {
@@ -148,21 +161,21 @@ function Reservation(){
         screenMovies.map((movie, j) => {
           return (
             <>
-            <h5 className="screen__time">{timeTable[j].movieDate.substring(11,16)}</h5>
-            {console.log(timeTable[j].id)}
+            <h5 className="screen__time">{screenTimetable[j].movieDate.substring(11,16)}</h5>
+            {console.log(screenTimetable[j].id)}
             <SmallCard
               key={j}
-              ratedYn={movie.ratedYn}
+              ratedYn={"/icons/"+String(movie.ratedYn).substring(0,3)+"_icon.svg"}
               title={movie.title}
               start_h={
-                timeTable[j]?.movieDate
-                  ? parseInt(timeTable[j].movieDate.substring(11, 13), 10) // 10진수로 변환
+                screenTimetable[j]?.movieDate
+                  ? parseInt(screenTimetable[j].movieDate.substring(11, 13), 10) // 10진수로 변환
                   : 0 // 기본값 설정
-                // timeTable[j].movieDate
+                // screenTimetable[j].movieDate
               }
               start_m={
-                timeTable[j]?.movieDate
-                  ? parseInt(timeTable[j].movieDate.substring(14, 16),10)
+                screenTimetable[j]?.movieDate
+                  ? parseInt(screenTimetable[j].movieDate.substring(14, 16),10)
                   : 0
               }
               end_h={
@@ -176,7 +189,7 @@ function Reservation(){
                   : 0
               }
               remainingSeats={10}
-              timetableId={timeTable[j].id}
+              screenTimetableId={screenTimetable[j].id}
               selectSmallCard={selectSmallCard}
               setSelectSmallCard={setSelectSmallCard}
             />

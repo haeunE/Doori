@@ -11,9 +11,9 @@ const SeatBooking = ({isAuth}) => {
 
 
   const location = useLocation();
-  const timetableId = parseInt(location.state.value); // 타임테이블 id
+  const screenTimetableId = parseInt(location.state.value); // 타임테이블 id
 
-  // const timetableId = 1; // timetable - 임시데이터
+  // const screenTimetableId = 1; // screenTimetable - 임시데이터
 
   const [selectedSeats, setSelectedSeats] = useState([]); // 선택 좌석
   const [reservedSeats, setReservedSeats] = useState([]); // 예약된 좌석
@@ -21,7 +21,7 @@ const SeatBooking = ({isAuth}) => {
   const [loading, setLoading] = useState(false); // 로딩중
   const navigate = useNavigate(); // 페이지 이동
  
-  const data = {price : price, timetableId : timetableId, seatNb : selectedSeats}
+  const data = {price : price, screenTimetableId : screenTimetableId, seatNb : selectedSeats}
 
   // const reservedSeatsEX = ["A1", "A3", "B2"]; // 예약된 좌석 예시 - 임시데이터
 
@@ -47,7 +47,7 @@ const SeatBooking = ({isAuth}) => {
   useEffect(()=>{
     setLoading(true);
     axiosInstance.get('/doori/reservation/seats', {
-      params : {timetableId : timetableId}
+      params : {screenTimetableId : screenTimetableId}
     })
       .then(response=>{
         console.log(response.data)
@@ -57,7 +57,7 @@ const SeatBooking = ({isAuth}) => {
         console.log(error)
         setLoading(false)
       })
-  }, [timetableId]);
+  }, [screenTimetableId]);
 
   if(loading)
     return <div>로딩중</div> // 로딩중인 사진? 넣어도 됨

@@ -3,7 +3,7 @@ import "../css/WeekDays.css";
 import SmallCard from "./SmallCard";
 import axiosInstance from "../../axiosInstance";
 
-const WeekDays = ({weekDays,selectedDate, setSelectedDate, }) => {
+const WeekDays = ({weekDays,selectedDate, setSelectedDate }) => {
     // 오늘 날짜를 기준으로 일주일 데이터 생성
   const [hoveredIndex, setHoveredIndex] = useState(null); // 마우스오버된 버튼 인덱스
   
