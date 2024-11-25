@@ -97,7 +97,7 @@ function Reservation(){
             console.log("해당 날짜에 있음");
             setScreenMovies(filterScreen);
           }
-        }
+        } 
 
         console.log("Updated screenTimetable:", response.data);
         console.log("Updated screenMovies:", newScreenMovies);

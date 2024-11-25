@@ -21,7 +21,7 @@ const SeatBooking = ({isAuth}) => {
   const [loading, setLoading] = useState(false); // 로딩중
   const navigate = useNavigate(); // 페이지 이동
  
-  const data = {price : price, screenTimetableId : screenTimetableId, seatNb : selectedSeats}
+  const data = {price : price, timetableId : screenTimetableId, seatNb : selectedSeats}
 
   // const reservedSeatsEX = ["A1", "A3", "B2"]; // 예약된 좌석 예시 - 임시데이터
 
@@ -47,7 +47,7 @@ const SeatBooking = ({isAuth}) => {
   useEffect(()=>{
     setLoading(true);
     axiosInstance.get('/doori/reservation/seats', {
-      params : {screenTimetableId : screenTimetableId}
+      params : {timetableId : screenTimetableId}
     })
       .then(response=>{
         console.log(response.data)
