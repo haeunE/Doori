@@ -1,6 +1,8 @@
 .Reservation{
-  width: 80%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 30px;
 }
-h1{
-  width: 80%;
-}
+

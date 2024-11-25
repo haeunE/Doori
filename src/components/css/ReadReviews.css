@@ -22,6 +22,27 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.all-big-star-wrapper {
+    display: flex; /* 별들을 가로로 배치 */
+    flex-wrap: nowrap; /* 줄 바꿈 방지 */
+    justify-content: center;
+    gap: 8px; /* 별 사이 간격 */
+    width: 100%; /* 컨테이너 크기 */
+  }
+
+.all-big-star {
+    width: 20px; /* 기존 크기의 절반 */
+    height: 20px; /* 기존 크기의 절반 */
+    background-color: #ddd;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transition: background-color 0.3s;
+}
+
+  
+  .all-big-star.filled {
+    background-color: gold;
+  }
+
 .review-list .review-item h2 {
     margin: 0 0 10px;
     color: #555;

@@ -40,13 +40,20 @@ function ReadReviews(props){
         return <div>로딩중</div>
     return(
         <div className="review-list">
-            <h1>Reviews</h1>
             <ul>
                 {readReviews.map(review => (
                     <li key={review.id} className="review-item">
-                        <h2>{review.title}</h2>
-                        <p>{review.content}</p>
-                        <p><strong>Date:</strong> {new Date(review.createdDate).toLocaleString()}</p>
+                        <p className="all-big-star-wrapper">
+                            {[1, 2, 3, 4, 5].map((starIndex) => (
+                                <div
+                                    key={starIndex}
+                                    className={`all-big-star ${review.reviewScope >= starIndex ? 'filled' : ''}`}
+                                ></div>
+                            ))}
+                        </p>
+                        <p><strong>{review.reviewContent}</strong></p>
+                        <p><strong>ID: </strong>{review.userId.username}</p>
+                        <p><strong>Date:</strong> {new Date(review.createDate).toLocaleString()}</p>
                     </li>
                 ))}
             </ul>

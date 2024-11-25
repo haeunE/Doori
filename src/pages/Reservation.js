@@ -4,6 +4,7 @@ import axiosInstance from "../axiosInstance"
 import WeekDays from "../components/js/WeekDays"
 import SmallCard from "../components/js/SmallCard";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import "./css/Reservation.css"
 
 function Reservation(){
   // 오늘 날짜를 기준으로 일주일 데이터 생성

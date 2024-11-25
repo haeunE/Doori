@@ -45,6 +45,7 @@ function App() {
         <Route path='/doori/reservation' element={<Reservation setIsAuth={setIsAuth}/>}/>
         <Route path='/doori/userverify' element={<UserVerify setIsAuth={setIsAuth}/>}/>
         
+        
         {/* 임시 route */}
 
         {/* 영화 정보에 대한 route */}
